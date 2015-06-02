@@ -32,6 +32,14 @@ use Cake\Event\Event;
 class AppController extends Controller
 {
 
+    public function beforeFilter(Event $event)
+    {
+        $this->Auth->allow(['login', 'display']);
+        $this->Auth->config('authorize', [
+            'Ldap', // app authorize object.
+            'AuthBag.Combo', // plugin authorize object.
+        ]);
+    }
     /**
      * Initialization hook method.
      *
@@ -54,10 +62,5 @@ class AppController extends Controller
                 'logged_home'
             ]
         ]);
-    }
-
-    public function beforeFilter(Event $event)
-    {
-        $this->Auth->allow(['login', 'display']);
     }
 }
