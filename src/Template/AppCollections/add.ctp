@@ -16,3 +16,5 @@
     <?= $this->Form->button(__('Submit')) ?>
     <?= $this->Form->end() ?>
 </div>
+
+<?php // $this->Form->select('items', $items, ['multiple' => true]) ?>

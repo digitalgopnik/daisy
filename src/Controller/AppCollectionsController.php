@@ -45,6 +45,8 @@ class AppCollectionsController extends AppController
      */
     public function add()
     {
+        // TODO: Items holen mit query
+        //$this->set('test', 'Dies ist ein Test');
         $appCollection = $this->AppCollections->newEntity();
         if ($this->request->is('post')) {
             $appCollection = $this->AppCollections->patchEntity($appCollection, $this->request->data);
