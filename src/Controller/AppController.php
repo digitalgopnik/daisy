@@ -24,6 +24,11 @@ use Cake\Controller\Controller;
  *
  * @link http://book.cakephp.org/3.0/en/controllers.html#the-app-controller
  */
+namespace App\Controller;
+
+use Cake\Controller\Controller;
+use Cake\Event\Event;
+
 class AppController extends Controller
 {
 
@@ -36,7 +41,23 @@ class AppController extends Controller
      */
     public function initialize()
     {
-        parent::initialize();
         $this->loadComponent('Flash');
+        $this->loadComponent('Auth', [
+            'loginRedirect' => [
+                'controller' => 'Pages',
+                'action' => 'display',
+                'home'
+            ],
+            'logoutRedirect' => [
+                'controller' => 'Pages',
+                'action' => 'display',
+                'logged_home'
+            ]
+        ]);
+    }
+
+    public function beforeFilter(Event $event)
+    {
+        $this->Auth->allow(['login', 'display']);
     }
 }
