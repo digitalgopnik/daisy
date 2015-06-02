@@ -35,7 +35,6 @@ class UsersController extends AppController
         // Allow users to register and logout.
         // You should not add the "login" action to allow list. Doing so would
         // cause problems with normal functioning of AuthComponent.
-        $this->Auth->allow(['login', 'display']);
     }
 
     /**
@@ -75,10 +74,7 @@ class UsersController extends AppController
 
     public function login()
     {
-        // TODO: if post
         $server = "ldapk5.tu-bs.de";
-
-        // TODO: LDAP Request
 
         if ($this->request->is(['post', 'put'])) {
 
@@ -100,7 +96,7 @@ class UsersController extends AppController
                 $user = $users->find()->where(['hashed_username' => $hashed_username])->first();
                 if ($user) {
                     $this->request->session()->write('user_id', $user->id);
-                    $this->set('user_id', $this->request->session()->read('user_id'));
+                    $this->set('user', $user);
                 } else {
                     $new_user_entity = [
                         'hashed_username' => $hashed_username,
@@ -109,7 +105,7 @@ class UsersController extends AppController
                     $user_entity = $users->newEntity($new_user_entity);
                     $user = $users->save($user_entity);
                     $this->request->session()->write('user_id', $user->id);
-                    $this->set('user_id', $this->request->session()->read('user_id'));
+                    $this->set('user', $user);
                 }
                 $this->redirect(['controller' => 'Pages', 'action' => 'display', 'logged_home']);
             } else {

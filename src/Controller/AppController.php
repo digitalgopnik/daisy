@@ -34,11 +34,7 @@ class AppController extends Controller
 
     public function beforeFilter(Event $event)
     {
-        $this->Auth->allow(['login', 'display']);
-        $this->Auth->config('authorize', [
-            'Ldap', // app authorize object.
-            'AuthBag.Combo', // plugin authorize object.
-        ]);
+
     }
     /**
      * Initialization hook method.
@@ -50,17 +46,5 @@ class AppController extends Controller
     public function initialize()
     {
         $this->loadComponent('Flash');
-        $this->loadComponent('Auth', [
-            'loginRedirect' => [
-                'controller' => 'Pages',
-                'action' => 'display',
-                'home'
-            ],
-            'logoutRedirect' => [
-                'controller' => 'Pages',
-                'action' => 'display',
-                'logged_home'
-            ]
-        ]);
     }
 }
