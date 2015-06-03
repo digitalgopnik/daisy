@@ -2,6 +2,8 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\Event\Event;
+
 
 /**
  * Words Controller
@@ -11,6 +13,16 @@ use App\Controller\AppController;
 class WordsController extends AppController
 {
 
+    public function beforeFilter(Event $event)
+    {
+        parent::beforeFilter($event);
+
+        $user_id = $this->request->session()->read('user_id');
+        $user_role = $this->request->session()->read('user_role');
+        if (!is_numeric($user_id) || $user_role=='student') {
+            $this->redirect(['controller' => 'Users', 'action' => 'dashboard']);
+        }
+    }
     /**
      * Index method
      *
@@ -19,7 +31,7 @@ class WordsController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['Items']
+            'contain' => []
         ];
         $this->set('words', $this->paginate($this->Words));
         $this->set('_serialize', ['words']);
@@ -35,7 +47,7 @@ class WordsController extends AppController
     public function view($id = null)
     {
         $word = $this->Words->get($id, [
-            'contain' => ['Items']
+            'contain' => []
         ]);
         $this->set('word', $word);
         $this->set('_serialize', ['word']);
@@ -58,8 +70,7 @@ class WordsController extends AppController
                 $this->Flash->error(__('The word could not be saved. Please, try again.'));
             }
         }
-        $items = $this->Words->Items->find('list', ['limit' => 200]);
-        $this->set(compact('word', 'items'));
+        $this->set(compact('word'));
         $this->set('_serialize', ['word']);
     }
 
@@ -84,8 +95,7 @@ class WordsController extends AppController
                 $this->Flash->error(__('The word could not be saved. Please, try again.'));
             }
         }
-        $items = $this->Words->Items->find('list', ['limit' => 200]);
-        $this->set(compact('word', 'items'));
+        $this->set(compact('word'));
         $this->set('_serialize', ['word']);
     }
 

@@ -42,20 +42,6 @@ class TodosTable extends Table
         $validator
             ->requirePresence('name', 'create')
             ->notEmpty('name');
-            
-        $validator
-            ->add('done', 'valid', ['rule' => 'boolean'])
-            ->requirePresence('done', 'create')
-            ->notEmpty('done');
-            
-        $validator
-            ->add('due_date', 'valid', ['rule' => 'datetime'])
-            ->requirePresence('due_date', 'create')
-            ->notEmpty('due_date');
-            
-        $validator
-            ->requirePresence('extra', 'create')
-            ->notEmpty('extra');
 
         return $validator;
     }

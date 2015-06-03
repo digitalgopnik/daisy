@@ -2,6 +2,8 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\Event\Event;
+
 
 /**
  * Todos Controller
@@ -11,6 +13,15 @@ use App\Controller\AppController;
 class TodosController extends AppController
 {
 
+    public function beforeFilter(Event $event)
+    {
+        parent::beforeFilter($event);
+
+        $user_id = $this->request->session()->read('user_id');
+        if (!is_numeric($user_id)) {
+            $this->redirect(['controller' => 'Users', 'action' => 'dashboard']);
+        }
+    }
     /**
      * Index method
      *
@@ -20,22 +31,6 @@ class TodosController extends AppController
     {
         $this->set('todos', $this->paginate($this->Todos));
         $this->set('_serialize', ['todos']);
-    }
-
-    /**
-     * View method
-     *
-     * @param string|null $id Todo id.
-     * @return void
-     * @throws \Cake\Network\Exception\NotFoundException When record not found.
-     */
-    public function view($id = null)
-    {
-        $todo = $this->Todos->get($id, [
-            'contain' => []
-        ]);
-        $this->set('todo', $todo);
-        $this->set('_serialize', ['todo']);
     }
 
     /**

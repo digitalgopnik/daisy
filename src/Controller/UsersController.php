@@ -14,11 +14,14 @@
  */
 namespace App\Controller;
 
+use App\Controller\DropboxesController;
+use App\Controller\Component\DropboxComponent;
 use Cake\Core\Configure;
 use Cake\Network\Exception\NotFoundException;
 use Cake\View\Exception\MissingTemplateException;
 use Cake\Event\Event;
 use Cake\ORM\TableRegistry;
+use Cake\Network\Session;
 
 /**
  * Static content controller
@@ -32,44 +35,16 @@ class UsersController extends AppController
     public function beforeFilter(Event $event)
     {
         parent::beforeFilter($event);
+
+        $this->loadModel('Users');
+        $this->loadModel('Items');
+
+        //$this->Auth->allow(['login', 'logout', 'dashboard']);
+
         // Allow users to register and logout.
         // You should not add the "login" action to allow list. Doing so would
         // cause problems with normal functioning of AuthComponent.
-    }
-
-    /**
-     * Displays a view
-     *
-     * @return void|\Cake\Network\Response
-     * @throws \Cake\Network\Exception\NotFoundException When the view file could not
-     *   be found or \Cake\View\Exception\MissingTemplateException in debug mode.
-     */
-    public function display()
-    {
-        $path = func_get_args();
-
-        $count = count($path);
-        if (!$count) {
-            return $this->redirect('/');
-        }
-        $page = $subpage = null;
-
-        if (!empty($path[0])) {
-            $page = $path[0];
-        }
-        if (!empty($path[1])) {
-            $subpage = $path[1];
-        }
-        $this->set(compact('page', 'subpage'));
-
-        try {
-            $this->render(implode('/', $path));
-        } catch (MissingTemplateException $e) {
-            if (Configure::read('debug')) {
-                throw $e;
-            }
-            throw new NotFoundException();
-        }
+        //$this->Auth->allow(['login', 'logout', 'dashboard']);
     }
 
     public function login()
@@ -91,45 +66,65 @@ class UsersController extends AppController
             $bind = ldap_bind($ldap, $dn, $password);
 
             if ($bind) {
-                $users = TableRegistry::get('users');
                 $hashed_username = md5($username);
-                $user = $users->find()->where(['hashed_username' => $hashed_username])->first();
-                if ($user) {
-                    $this->request->session()->write('user_id', $user->id);
-                    $this->set('user', $user);
-                } else {
+                $hashed_password = md5($username."password");
+                $user = $this->Users->find()->where(['username' => $hashed_username])->first();
+                if (!$user) {
                     $new_user_entity = [
-                        'hashed_username' => $hashed_username,
+                        'username' => $hashed_username,
+                        'password' => $hashed_password,
                         'role' => 'student'
                     ];
-                    $user_entity = $users->newEntity($new_user_entity);
-                    $user = $users->save($user_entity);
-                    $this->request->session()->write('user_id', $user->id);
-                    $this->set('user', $user);
+                    $user_entity = $this->Users->newEntity($new_user_entity);
+                    $user = $this->Users->save($user_entity);
                 }
-                $this->redirect(['controller' => 'Pages', 'action' => 'display', 'logged_home']);
+                $this->set('user', $user);
+                $this->request->session()->write('user_id', $user->id);
+                $this->request->session()->write('user_role', $user->role);
+                $this->redirect(['action' => 'dashboard']);
             } else {
+                $this->Flash->error(__('Benutzername oder Passwort nicht korrekt.'));
                 $this->redirect(['controller' => 'Users', 'action' => 'login']);
             }
 
         }
     }
 
+
     public function logout() {
+        $this->request->session()->destroy();
+        $this->redirect(['controller' => 'Users', 'action' => 'dashboard']);
     }
 
     public function edit($user_id = null) {
-        $users = TableRegistry::get('users');
-        $user = $users->get($user_id);
+        $user = $this->Users->get($user_id);
 
         if ($this->request->is(['post', 'put'])) {
             $patch_user = [
                 'role' => $this->request->data['role']
             ];
-            $user = $users->patchEntity($user, $patch_user);
-            $users->save($user);
+            $user = $this->Users->patchEntity($user, $patch_user);
+            $this->Users->save($user);
             $this->redirect(['controller' => 'Users', 'action' => 'edit', $user_id]);
         }
+    }
+
+    public function dashboard() {
+
+        $this->set('items', $this->Items->find('all'));
+
+        if ($this->request->session()->read('user_id')) {
+            $user = $this->Users->get($this->request->session()->read('user_id'));
+            $this->set('user', $user);
+
+        }
+
+    }
+
+    public function test_dropbox() {
+        $dropbox_controller = new DropBoxesController();
+
+        $dropbox_controller->index();
     }
 
 }

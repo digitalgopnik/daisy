@@ -24,10 +24,6 @@ class WordsTable extends Table
         $this->table('words');
         $this->displayField('id');
         $this->primaryKey('id');
-        $this->belongsTo('Items', [
-            'foreignKey' => 'item_id',
-            'joinType' => 'INNER'
-        ]);
     }
 
     /**
@@ -43,22 +39,10 @@ class WordsTable extends Table
             ->allowEmpty('id', 'create');
             
         $validator
-            ->requirePresence('word', 'create')
-            ->notEmpty('word');
+            ->requirePresence('name', 'create')
+            ->notEmpty('name');
 
         return $validator;
     }
 
-    /**
-     * Returns a rules checker object that will be used for validating
-     * application integrity.
-     *
-     * @param \Cake\ORM\RulesChecker $rules The rules object to be modified.
-     * @return \Cake\ORM\RulesChecker
-     */
-    public function buildRules(RulesChecker $rules)
-    {
-        $rules->add($rules->existsIn(['item_id'], 'Items'));
-        return $rules;
-    }
 }

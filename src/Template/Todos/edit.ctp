@@ -1,26 +1,49 @@
-<div class="actions columns large-2 medium-3">
-    <h3><?= __('Actions') ?></h3>
+<div class="col-xs-2">
+    <h3><?= __('Aktionen') ?></h3>
     <ul class="side-nav">
         <li><?= $this->Form->postLink(
-                __('Delete'),
+                __('Löschen'),
                 ['action' => 'delete', $todo->id],
-                ['confirm' => __('Are you sure you want to delete # {0}?', $todo->id)]
+                ['confirm' => __('Bist du sicher?')]
             )
-        ?></li>
-        <li><?= $this->Html->link(__('List Todos'), ['action' => 'index']) ?></li>
+            ?></li>
+        <li><?= $this->Html->link(__('ToDos auflisten'), ['action' => 'index']) ?></li>
     </ul>
 </div>
-<div class="todos form large-10 medium-9 columns">
+<div class="col-xs-10">
     <?= $this->Form->create($todo) ?>
-    <fieldset>
-        <legend><?= __('Edit Todo') ?></legend>
-        <?php
-            echo $this->Form->input('name');
-            echo $this->Form->input('done');
-            echo $this->Form->input('due_date');
-            echo $this->Form->input('extra');
-        ?>
-    </fieldset>
-    <?= $this->Form->button(__('Submit')) ?>
+    <legend><?= __('ToDo bearbeiten') ?></legend>
+    <div class="row">
+        <div class="col-xs-3">
+            <label for="name">Name</label>
+        </div>
+        <div class="col-xs-9">
+            <?php
+            echo $this->Form->input('name', ['label' => false, 'id' => 'name', 'class' => 'form-control']);
+            ?>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-3">
+            <label for="done">Status</label>
+        </div>
+        <div class="col-xs-9">
+            <?php
+            echo $this->Form->checkbox('done', ['label' => false, 'id' => 'done', 'class' => 'form-control']);
+            ?>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-3">
+            <label for="due_date">Frist</label>
+        </div>
+        <div class="col-xs-9">
+            <?php
+            echo $this->Form->input('due_date', ['label' => false, 'id' => 'due_date', 'class' => 'form-control']);
+            ?>
+        </div>
+    </div>
+    <?= $this->Form->button(__('Speichern'), ['class' => 'btn btn-danger']) ?>
     <?= $this->Form->end() ?>
 </div>
+

@@ -1,21 +1,19 @@
-<div class="actions columns large-2 medium-3">
-    <h3><?= __('Actions') ?></h3>
+<div class="col-lg-2 col-md-2 col-xs-2">
+    <h3><?= __('Aktionen') ?></h3>
     <ul class="side-nav">
-        <li><?= $this->Html->link(__('New Todo'), ['action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('Neue Aufgabe anlegen'), ['action' => 'add']) ?></li>
     </ul>
 </div>
-<div class="todos index large-10 medium-9 columns">
-    <table cellpadding="0" cellspacing="0">
+<div class="col-lg-10 col-md-10 col-xs-10">
+    <table id="data_table" class="table table-striped table-bordered dataTable no-footer" cellpadding="0" cellspacing="0">
     <thead>
-        <tr>
-            <th><?= $this->Paginator->sort('id') ?></th>
-            <th><?= $this->Paginator->sort('name') ?></th>
-            <th><?= $this->Paginator->sort('done') ?></th>
-            <th><?= $this->Paginator->sort('due_date') ?></th>
-            <th><?= $this->Paginator->sort('created') ?></th>
-            <th><?= $this->Paginator->sort('extra') ?></th>
-            <th class="actions"><?= __('Actions') ?></th>
-        </tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Abgeschlossen</th>
+            <th>Frist</th>
+            <th>Erstellt</th>
+            <th>Zusatz</th>
+            <th class="actions"><?= __('Aktionen') ?></th>
     </thead>
     <tbody>
     <?php foreach ($todos as $todo): ?>
@@ -27,9 +25,8 @@
             <td><?= h($todo->created) ?></td>
             <td><?= h($todo->extra) ?></td>
             <td class="actions">
-                <?= $this->Html->link(__('View'), ['action' => 'view', $todo->id]) ?>
-                <?= $this->Html->link(__('Edit'), ['action' => 'edit', $todo->id]) ?>
-                <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $todo->id], ['confirm' => __('Are you sure you want to delete # {0}?', $todo->id)]) ?>
+                <?= $this->Html->link(__('Bearbeiten'), ['action' => 'edit', $todo->id]) ?>
+                <?= $this->Form->postLink(__('Löschen'), ['action' => 'delete', $todo->id], ['confirm' => __('Bist du sicher?')]) ?>
             </td>
         </tr>
 
@@ -38,9 +35,9 @@
     </table>
     <div class="paginator">
         <ul class="pagination">
-            <?= $this->Paginator->prev('< ' . __('previous')) ?>
+            <?= $this->Paginator->prev('< ' . __('vorherige')) ?>
             <?= $this->Paginator->numbers() ?>
-            <?= $this->Paginator->next(__('next') . ' >') ?>
+            <?= $this->Paginator->next(__('nächste') . ' >') ?>
         </ul>
         <p><?= $this->Paginator->counter() ?></p>
     </div>

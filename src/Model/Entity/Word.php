@@ -15,8 +15,6 @@ class Word extends Entity
      * @var array
      */
     protected $_accessible = [
-        'word' => true,
-        'item_id' => true,
-        'item' => true,
+        'name' => true,
     ];
 }

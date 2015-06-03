@@ -32,19 +32,11 @@ use Cake\Event\Event;
 class AppController extends Controller
 {
 
-    public function beforeFilter(Event $event)
-    {
-
-    }
-    /**
-     * Initialization hook method.
-     *
-     * Use this method to add common initialization code like loading components.
-     *
-     * @return void
-     */
-    public function initialize()
-    {
+    public function initialize() {
         $this->loadComponent('Flash');
+    }
+
+    public function beforeFilter(Event $event) {
+        parent::beforeFilter($event);
     }
 }
