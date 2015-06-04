@@ -1,4 +1,4 @@
-<div class="col-xs-2">
+<div class="col-xs-3">
     <h3><?= __('Aktionen') ?></h3>
     <ul class="side-nav">
         <li><?= $this->Html->link(__('Dateien auflisten'), ['action' => 'index']) ?></li>
@@ -10,7 +10,7 @@ foreach ($groups as $group) {
     $groups_array[$group->id] = $group->name;
 }
 ?>
-<div class="col-xs-10">
+<div class="col-lg-6 col-md-6 col-xs-6">
     <?= $this->Form->create($file_upload, ['enctype' => 'multipart/form-data']) ?>
     <?= $this->Form->hidden('user_id') ?>
     <?= $this->Form->hidden('group_id') ?>

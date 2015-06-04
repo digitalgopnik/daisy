@@ -166,6 +166,7 @@ class GroupsController extends AppController
         $this->loadModel('GroupsUsers');
         $this->loadModel('Users');
         $groups_users = $this->GroupsUsers->find()->select(['user_id'])->where(['group_id' => $id]);
+        $this->set('groups_users', $groups_users);
         $users = $this->Users->find()->where(['Users.id IN' => $groups_users]);
         $this->set('users', $users);
         $group = $this->Groups->get($id, [

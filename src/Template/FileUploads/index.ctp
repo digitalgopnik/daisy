@@ -1,5 +1,5 @@
 <br>
-<div class="col-lg-2 col-md-2 col-xs-2">
+<div class="col-lg-3 col-md-3 col-xs-3">
     <h3><?= __('Aktionen') ?></h3>
     <ul class="side-nav">
         <li><?= $this->Html->link(__('Neue Datei anlegen'), ['action' => 'add']) ?></li>
@@ -12,7 +12,7 @@ foreach ($groups as $group) {
     $groups_array[$group->id] = $group->name;
 } */
 ?>
-<div class="col-lg-5 col-md-5 col-xs-5">
+<div class="col-lg-4 col-md-4 col-xs-4">
     <div class="panel">
         <div class="panel-heading">
             <h2>Meine Dateien</h2>
@@ -57,7 +57,7 @@ foreach ($groups as $group) {
     $groups_array[$group->id] = $group->name;
 }
 ?>
-<div class="col-lg-5 col-md-5 col-xs-5">
+<div class="col-lg-4 col-md-4 col-xs-4">
     <div class="panel">
         <div class="panel-heading">
             <h2>Gruppen-Dateien</h2>

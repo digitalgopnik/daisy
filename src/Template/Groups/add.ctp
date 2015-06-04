@@ -1,7 +1,7 @@
-<div class="col-xs-2">
+<div class="col-lg-3 col-md-3 col-xs-3">
     <h3><?= __('Aktionen') ?></h3>
     <ul class="side-nav">
-        <li><?= $this->Html->link(__('Gruppen auflisten'), ['action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('Gruppen auflisten'), ['action' => 'index'], ['class' => 'btn btn-danger']) ?></li>
     </ul>
 </div>
 <?php
@@ -10,7 +10,7 @@ foreach ($users as $user) {
     $users_array[$user->id] = $user->email;
 }
 ?>
-<div class="col-xs-10">
+<div class="col-lg-6 col-md-6 col-xs-6">
     <?= $this->Form->create('Group', ['action' => 'add']) ?>
     <?= $this->Form->hidden('folder_path') ?>
     <legend><?= __('Gruppe hinzufügen') ?></legend>

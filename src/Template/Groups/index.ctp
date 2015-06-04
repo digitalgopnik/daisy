@@ -1,5 +1,5 @@
 <br>
-<div class="col-lg-2 col-md-2 col-xs-2">
+<div class="col-lg-3 col-md-3 col-xs-3">
     <h3><?= __('Aktionen') ?></h3>
     <ul class="side-nav">
         <li><?= $this->Html->link(__('Neue Gruppe anlegen'), ['action' => 'add']) ?></li>
@@ -12,7 +12,7 @@ foreach ($items as $item) {
     $items_array[$item->id] = $item->name;
 } */
 ?>
-<div class="col-lg-10 col-md-10 col-xs-10">
+<div class="col-lg-6 col-md-6 col-xs-6">
     <table id="data_table" class="table table-striped table-bordered dataTable no-footer" cellpadding="0" cellspacing="0">
         <thead>
         <th>#</th>

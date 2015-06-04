@@ -1,4 +1,4 @@
-<div class="col-xs-2">
+<div class="col-lg-3 col-md-3 col-xs-3">
     <h3><?= __('Aktionen') ?></h3>
     <ul class="side-nav">
         <li><?= $this->Form->postLink(
@@ -7,10 +7,16 @@
                 ['confirm' => __('Bist du sicher?')]
             )
             ?></li>
-        <li><?= $this->Html->link(__('Gruppen auflisten'), ['action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('Gruppen auflisten'), ['action' => 'index'], ['class' => 'btn btn-danger']) ?></li>
     </ul>
 </div>
-<div class="col-xs-10">
+<?php
+$groups_users_array = array();
+foreach ($groups_users as $group_user) {
+    $groups_users_array[$group_user->user_id] = $group_user->accepted;
+}
+?>
+<div class="col-lg-6 col-md-6 col-xs-6">
     <?= $this->Form->create($group) ?>
     <legend><?= __('Gruppe bearbeiten') ?></legend>
     <div class="row">
@@ -31,6 +37,9 @@
         <div class="col-xs-9">
             <?php
             foreach ($users as $user) {
+                if ($groups_users_array[$user->id]=='0') {
+                    continue;
+                }
                 echo $user->email;
                 echo "<br>";
             }

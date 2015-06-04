@@ -1,20 +1,20 @@
 <br>
-<div class="actions columns large-2 medium-3">
-    <h3><?= __('Actions') ?></h3>
+<div class="col-lg-3 col-md-3 col-xs-3">
+    <h3><?= __('Aktionen') ?></h3>
     <ul class="side-nav">
-        <li><?= $this->Html->link(__('New Item'), ['action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('Neue App'), ['action' => 'add'], ['class' => 'btn btn-danger']) ?></li>
     </ul>
 </div>
-<div class="items index large-10 medium-9 columns">
-    <table cellpadding="0" cellspacing="0">
+<div class="col-lg-6 col-md-6 col-xs-6">
+    <table id="data_table" class="table table-striped table-bordered dataTable no-footer" cellpadding="0" cellspacing="0">
     <thead>
         <tr>
-            <th><?= $this->Paginator->sort('id') ?></th>
-            <th><?= $this->Paginator->sort('name') ?></th>
-            <th><?= $this->Paginator->sort('auth_key') ?></th>
-            <th><?= $this->Paginator->sort('auth_token') ?></th>
-            <th><?= $this->Paginator->sort('url') ?></th>
-            <th class="actions"><?= __('Actions') ?></th>
+            <th>#</th>
+            <th>Name</th>
+            <th>Auth_KEY</th>
+            <th>Auth_TOKEN</th>
+            <th>Bild</th>
+            <th class="actions"><?= __('Aktionen') ?></th>
         </tr>
     </thead>
     <tbody>
@@ -26,9 +26,8 @@
             <td><?= h($item->auth_token) ?></td>
             <td><?= h($item->url) ?></td>
             <td class="actions">
-                <?= $this->Html->link(__('View'), ['action' => 'view', $item->id]) ?>
-                <?= $this->Html->link(__('Edit'), ['action' => 'edit', $item->id]) ?>
-                <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $item->id], ['confirm' => __('Are you sure you want to delete # {0}?', $item->id)]) ?>
+                <?= $this->Html->link(__('Bearbeiten'), ['action' => 'edit', $item->id], ['class' => 'btn btn-danger']) ?>
+                <?= $this->Form->postLink(__('Löschen'), ['action' => 'delete', $item->id], ['class' => 'btn btn-danger'], ['confirm' => __('Bist du sicher?')]) ?>
             </td>
         </tr>
 

@@ -1,16 +1,16 @@
-<div class="actions columns large-2 medium-3">
-    <h3><?= __('Actions') ?></h3>
+<div class="col-lg-3 col-md-3 col-xs-3">
+    <h3><?= __('Aktionen') ?></h3>
     <ul class="side-nav">
         <li><?= $this->Form->postLink(
                 __('Delete'),
                 ['action' => 'delete', $item->id],
-                ['confirm' => __('Are you sure you want to delete # {0}?', $item->id)]
+                ['confirm' => __('Bist du sicher')]
             )
         ?></li>
-        <li><?= $this->Html->link(__('List Items'), ['action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('Apps auflisten'), ['action' => 'index']) ?></li>
     </ul>
 </div>
-<div class="items form large-10 medium-9 columns">
+<div class="col-lg-6 col-md-6 col-xs-6">
     <?= $this->Form->create($item) ?>
     <fieldset>
         <legend><?= __('Edit Item') ?></legend>
