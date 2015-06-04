@@ -15,6 +15,7 @@ class Todo extends Entity
      * @var array
      */
     protected $_accessible = [
+        'user_id' => true,
         'name' => true,
         'done' => true,
         'due_date' => true,

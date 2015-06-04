@@ -27,7 +27,7 @@ class GroupsTable extends Table
         $this->belongsToMany('Users', [
             'foreignKey' => 'group_id',
             'targetForeignKey' => 'user_id',
-            'joinTable' => 'groups_users'
+            'through' => 'groups_users'
         ]);
     }
 

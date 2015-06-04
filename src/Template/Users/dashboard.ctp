@@ -9,7 +9,11 @@
                 <div class="content-panel pn">
 
                     <a href="#">
-                        <div id="blog-bg">
+                        <?php
+                        $url = "http://localhost".$this->request->base.$item->image_url;
+                        $background_variable = "background-image: url($url);";
+                        ?>
+                        <div id="blog-bg" style="<?php echo $background_variable; ?>">
 
                         </div>
                     </a>

@@ -33,7 +33,7 @@ class UsersTable extends Table
         $this->belongsToMany('Groups', [
             'foreignKey' => 'user_id',
             'targetForeignKey' => 'group_id',
-            'joinTable' => 'groups_users'
+            'through' => 'groups_users'
         ]);
     }
 
@@ -50,8 +50,8 @@ class UsersTable extends Table
             ->allowEmpty('id', 'create');
             
         $validator
-            ->requirePresence('hashed_username', 'create')
-            ->notEmpty('hashed_username');
+            ->requirePresence('username', 'create')
+            ->notEmpty('username');
             
         $validator
             ->requirePresence('role', 'create')

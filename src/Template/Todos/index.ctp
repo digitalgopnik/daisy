@@ -1,3 +1,4 @@
+<br>
 <div class="col-lg-2 col-md-2 col-xs-2">
     <h3><?= __('Aktionen') ?></h3>
     <ul class="side-nav">

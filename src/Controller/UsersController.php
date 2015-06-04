@@ -60,6 +60,8 @@ class UsersController extends AppController
 
             $dn = "uid=$username,ou=people,dc=tu-bs,dc=de";
 
+            $requested_email = $username."@tu-bs.de";
+
             ldap_set_option($ldap, LDAP_OPT_PROTOCOL_VERSION, 3);
             ldap_set_option($ldap, LDAP_OPT_REFERRALS, 0);
 
@@ -70,11 +72,22 @@ class UsersController extends AppController
                 $hashed_password = md5($username."password");
                 $user = $this->Users->find()->where(['username' => $hashed_username])->first();
                 if (!$user) {
+
+                    $user_folder = "files/". md5("1".$this->request->data['username']);
+                    $user_path = WWW_ROOT . $user_folder;
+
+                    if (!is_dir($user_path)) {
+                        mkdir($user_path, 0777, true);
+                    }
+
                     $new_user_entity = [
                         'username' => $hashed_username,
                         'password' => $hashed_password,
-                        'role' => 'student'
+                        'user_path' => $user_folder,
+                        'role' => 'student',
+                        'email' => $requested_email
                     ];
+
                     $user_entity = $this->Users->newEntity($new_user_entity);
                     $user = $this->Users->save($user_entity);
                 }

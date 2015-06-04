@@ -99,17 +99,24 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
                         <?php
                         }
                         ?>
-                        <li><a href="#filter_modal" data-toggle="modal">Kategorisieren</a></li>
+                        <li><a href="#filter_modal" data-toggle="modal"><i class="fa fa-filter"></i>Kategorisieren</a></li>
 
                     </ul>
                 </li>
 
-                <li>
-                    <a href="Dateien.html" href="javascript:;">
-                        <i class="fa fa-file"></i>
-                        <span>Alle Dateien</span>
-                    </a>
-                </li>
+                <?php
+                if (isset($user_id) && $user_id!=null) {
+                    ?>
+                    <li>
+                        <?php
+                        $i_class_files = $this->Html->tag('i', '', ['class' => 'fa fa-folder', 'escape' => false]);
+                        $span_class_files = $this->Html->tag('span', 'Dateien', ['escape' => false]);
+                        echo $this->Html->link($i_class_files . $span_class_files, ['controller' => 'FileUploads', 'action' => 'index'], ['escape' => false]);
+                        ?>
+                    </li>
+                <?php
+                }
+                ?>
                 <!-- Kategorisieren der Tools (Apps) example: Sort 1, 2 & 3 -->
                 <!--<li class="sub-menu">
                     <a href="javascript:;" >
@@ -162,9 +169,37 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
                     ?>
                     <li>
                         <?php
+                        $i_class_notes = $this->Html->tag('i', '', ['class' => 'fa fa-server', 'escape' => false]);
+                        $span_class_notes = $this->Html->tag('span', 'Notizen', ['escape' => false]);
+                        echo $this->Html->link($i_class_notes . $span_class_notes, ['controller' => 'Notes', 'action' => 'index'], ['escape' => false]);
+                        ?>
+                    </li>
+                <?php
+                }
+                ?>
+
+                <?php
+                if (isset($user_id) && $user_id!=null) {
+                    ?>
+                    <li>
+                        <?php
                         $i_class_words = $this->Html->tag('i', '', ['class' => 'fa fa-server', 'escape' => false]);
-                        $span_class_words = $this->Html->tag('span', 'Kategorien / Schlagworte', ['escape' => false]);
+                        $span_class_words = $this->Html->tag('span', 'Schlagworte', ['escape' => false]);
                         echo $this->Html->link($i_class_words . $span_class_words, ['controller' => 'Words', 'action' => 'index'], ['escape' => false]);
+                        ?>
+                    </li>
+                <?php
+                }
+                ?>
+
+                <?php
+                if (isset($user_id) && $user_id!=null) {
+                    ?>
+                    <li>
+                        <?php
+                        $i_class_groups = $this->Html->tag('i', '', ['class' => 'fa fa-user', 'escape' => false]);
+                        $span_class_groups = $this->Html->tag('span', 'Gruppen', ['escape' => false]);
+                        echo $this->Html->link($i_class_groups . $span_class_groups, ['controller' => 'groups', 'action' => 'index'], ['escape' => false]);
                         ?>
                     </li>
                 <?php

@@ -18,7 +18,9 @@ class NotesController extends AppController
      */
     public function index()
     {
-        $this->set('notes', $this->paginate($this->Notes));
+        $this->loadModel('Items');
+        $this->set('items', $this->paginate($this->Items));
+        $this->set('notes', $this->Notes->find()->where(['Notes.user_id' => $this->request->session()->read('user_id')]));
         $this->set('_serialize', ['notes']);
     }
 
@@ -31,9 +33,13 @@ class NotesController extends AppController
      */
     public function view($id = null)
     {
+
         $note = $this->Notes->get($id, [
             'contain' => []
         ]);
+        if ($this->request->session()->read('user_id')!=$note->user_id) {
+            $this->redirect(['controller' => 'Users', 'action' => 'dashboard']);
+        }
         $this->set('note', $note);
         $this->set('_serialize', ['note']);
     }
@@ -47,6 +53,7 @@ class NotesController extends AppController
     {
         $note = $this->Notes->newEntity();
         if ($this->request->is('post')) {
+            $this->request->data['user_id'] = $this->request->session()->read('user_id');
             $note = $this->Notes->patchEntity($note, $this->request->data);
             if ($this->Notes->save($note)) {
                 $this->Flash->success(__('The note has been saved.'));
@@ -71,6 +78,9 @@ class NotesController extends AppController
         $note = $this->Notes->get($id, [
             'contain' => []
         ]);
+        if ($this->request->session()->read('user_id')!=$note->user_id) {
+            $this->redirect(['controller' => 'Users', 'action' => 'dashboard']);
+        }
         if ($this->request->is(['patch', 'post', 'put'])) {
             $note = $this->Notes->patchEntity($note, $this->request->data);
             if ($this->Notes->save($note)) {

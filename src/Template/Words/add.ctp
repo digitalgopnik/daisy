@@ -17,6 +17,7 @@
             ?>
         </div>
     </div>
+    <br>
     <?= $this->Form->button(__('Anlegen'), ['class' => 'btn btn-danger']) ?>
     <?= $this->Form->end() ?>
 </div>

@@ -29,7 +29,7 @@ class TodosController extends AppController
      */
     public function index()
     {
-        $this->set('todos', $this->paginate($this->Todos));
+        $this->set('todos', $this->paginate($this->Todos->find()->where(['Todos.user_id' => $this->request->session()->read('user_id')])));
         $this->set('_serialize', ['todos']);
     }
 
@@ -42,6 +42,7 @@ class TodosController extends AppController
     {
         $todo = $this->Todos->newEntity();
         if ($this->request->is('post')) {
+            $this->request->data['user_id'] = $this->request->session()->read('user_id');
             $todo = $this->Todos->patchEntity($todo, $this->request->data);
             if ($this->Todos->save($todo)) {
                 $this->Flash->success(__('The todo has been saved.'));

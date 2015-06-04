@@ -52,6 +52,12 @@ Router::scope('/', function ($routes) {
     $routes->connect('/logout', ['controller' => 'Users', 'action' => 'logout']);
     $routes->connect('/dashboard', ['controller' => 'Users', 'action' => 'dashboard']);
 
+    if (strpos($_SERVER['REQUEST_URI'], "/Accept/")!==false) {
+
+        Router::connect('/Accept/*', array('controller' => 'Groups', 'action' => 'accept'));
+
+    }
+
     /**
      * ...and connect the rest of 'Pages' controller's URLs.
      */

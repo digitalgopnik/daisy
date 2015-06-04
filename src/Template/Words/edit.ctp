@@ -7,7 +7,7 @@
                 ['confirm' => __('Bist du sicher?')]
             )
             ?></li>
-        <li><?= $this->Html->link(__('ToDos auflisten'), ['action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('Schlagwörter auflisten'), ['action' => 'index']) ?></li>
     </ul>
 </div>
 <div class="col-xs-10">

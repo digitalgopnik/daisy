@@ -7,12 +7,12 @@
                 ['confirm' => __('Bist du sicher?')]
             )
             ?></li>
-        <li><?= $this->Html->link(__('ToDos auflisten'), ['action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('Aufgaben auflisten'), ['action' => 'index']) ?></li>
     </ul>
 </div>
 <div class="col-xs-10">
     <?= $this->Form->create($todo) ?>
-    <legend><?= __('ToDo bearbeiten') ?></legend>
+    <legend><?= __('Aufgabe bearbeiten') ?></legend>
     <div class="row">
         <div class="col-xs-3">
             <label for="name">Name</label>
@@ -23,6 +23,7 @@
             ?>
         </div>
     </div>
+    <br>
     <div class="row">
         <div class="col-xs-3">
             <label for="done">Status</label>
@@ -33,6 +34,7 @@
             ?>
         </div>
     </div>
+    <br>
     <div class="row">
         <div class="col-xs-3">
             <label for="due_date">Frist</label>
@@ -43,6 +45,7 @@
             ?>
         </div>
     </div>
+    <br>
     <?= $this->Form->button(__('Speichern'), ['class' => 'btn btn-danger']) ?>
     <?= $this->Form->end() ?>
 </div>
