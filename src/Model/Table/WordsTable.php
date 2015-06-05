@@ -24,6 +24,12 @@ class WordsTable extends Table
         $this->table('words');
         $this->displayField('id');
         $this->primaryKey('id');
+        $this->belongsToMany('Items', [
+            'foreignKey' => 'item_id',
+            'targetForeignKey' => 'item_id',
+            'through' => 'words_items'
+        ]);
+
     }
 
     /**

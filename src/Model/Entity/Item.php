@@ -22,5 +22,6 @@ class Item extends Entity
         'favorites' => true,
         'notes' => true,
         'words' => true,
+        'offline' => true
     ];
 }

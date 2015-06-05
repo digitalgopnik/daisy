@@ -80,8 +80,32 @@ class ItemsController extends AppController
                 $this->Flash->error(__('The item could not be saved. Please, try again.'));
             }
         }
+        $this->loadModel('Words');
+        $this->loadModel('WordsItems');
+        $words_items = $this->WordsItems->find()->select(['WordsItems.word_id'])->where(['WordsItems.item_id' => $id])->hydrate(false);
+        $this->set('selected_words', $this->Words->find()->where(['Words.id IN' => $words_items]));
+        $this->set('words', $this->Words->find()->where(['Words.id NOT IN' => $words_items]));
         $this->set(compact('item'));
         $this->set('_serialize', ['item']);
+    }
+
+    public function save_words() {
+        $this->loadModel('WordsItems');
+        if ($this->request->is(['post', 'put'])) {
+            foreach($this->request->data['words'] as $word) {
+                if (isset($word['0']) && $word['0']!='') {
+                    $new_word_item = [
+                        'word_id' => $word['0'],
+                        'item_id' => $this->request->data['item_id']
+                    ];
+
+                    $new_word = $this->WordsItems->newEntity($new_word_item);
+                    $this->WordsItems->save($new_word);
+                }
+            }
+            $this->Flash->success(__('Die Wörter wurden gespeichert.'));
+            return $this->redirect(['action' => 'edit', $this->request->data['item_id']]);
+        }
     }
 
     /**

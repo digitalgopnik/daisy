@@ -52,6 +52,8 @@ Router::scope('/', function ($routes) {
     $routes->connect('/logout', ['controller' => 'Users', 'action' => 'logout']);
     $routes->connect('/dashboard', ['controller' => 'Users', 'action' => 'dashboard']);
 
+    $routes->connect('/App/*', ['controller' => 'Users', 'action' => 'app_view']);
+
     if (strpos($_SERVER['REQUEST_URI'], "/Accept/")!==false) {
 
         Router::connect('/Accept/*', array('controller' => 'Groups', 'action' => 'accept'));

@@ -32,20 +32,19 @@ class FavoritesController extends AppController
      *
      * @return void Redirects on successful add, renders view otherwise.
      */
-    public function add()
+    public function add($item_id = null)
     {
-        $favorite = $this->Favorites->newEntity();
+        $this->layout = "ajax";
+        $this->autoRender = false;
         if ($this->request->is('post')) {
-            $favorite = $this->Favorites->patchEntity($favorite, $this->request->data);
-            if ($this->Favorites->save($favorite)) {
-                $this->Flash->success(__('The favorite has been saved.'));
-                return $this->redirect(['action' => 'index']);
-            } else {
-                $this->Flash->error(__('The favorite could not be saved. Please, try again.'));
-            }
+            $new_favorite = [
+                'user_id' => $this->request->session()->read('user_id'),
+                'item_id' => $item_id
+            ];
+            $favorite = $this->Favorites->newEntity($new_favorite);
+            $this->Favorites->save($favorite);
+
         }
-        $this->set(compact('favorite'));
-        $this->set('_serialize', ['favorite']);
     }
 
     /**
@@ -55,16 +54,15 @@ class FavoritesController extends AppController
      * @return void Redirects to index.
      * @throws \Cake\Network\Exception\NotFoundException When record not found.
      */
-    public function delete($id = null)
+    public function delete($item_id = null)
     {
         $this->request->allowMethod(['post', 'delete']);
-        $favorite = $this->Favorites->get($id);
-        if ($this->Favorites->delete($favorite)) {
-            $this->Flash->success(__('The favorite has been deleted.'));
-        } else {
-            $this->Flash->error(__('The favorite could not be deleted. Please, try again.'));
+        $this->layout = "ajax";
+        $this->autoRender = false;
+        if ($this->request->is('post')) {
+            $favorite = $this->Favorites->find()->where(['user_id' => $this->request->session()->read('user_id'), 'item_id' => $item_id])->first();
+            $this->Favorites->delete($favorite);
         }
-        return $this->redirect(['action' => 'index']);
     }
 
     public function dashboard() {
@@ -73,7 +71,7 @@ class FavoritesController extends AppController
             $user = $this->Users->get($this->request->session()->read('user_id'));
 
             $favorites = $this->Favorites->find()->select('Favorites.item_id')->where(['Favorites.user_id' => $user->id]);
-
+            $this->set('favorites', $favorites);
             $this->set('items', $this->Items->find('all')->where(['Items.id IN' => $favorites]));
 
             $this->set('user', $user);

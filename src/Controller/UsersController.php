@@ -14,14 +14,13 @@
  */
 namespace App\Controller;
 
-use App\Controller\DropboxesController;
-use App\Controller\Component\DropboxComponent;
 use Cake\Core\Configure;
 use Cake\Network\Exception\NotFoundException;
 use Cake\View\Exception\MissingTemplateException;
 use Cake\Event\Event;
 use Cake\ORM\TableRegistry;
 use Cake\Network\Session;
+use App\Controller\AppController;
 
 /**
  * Static content controller
@@ -38,6 +37,12 @@ class UsersController extends AppController
 
         $this->loadModel('Users');
         $this->loadModel('Items');
+        $this->loadModel('Notes');
+        $this->loadModel('Groups');
+        $this->loadModel('FileUploads');
+        $this->loadModel('Favorites');
+        $this->loadModel('WordsItems');
+        $this->loadModel('Words');
 
         //$this->Auth->allow(['login', 'logout', 'dashboard']);
 
@@ -53,21 +58,32 @@ class UsersController extends AppController
 
         if ($this->request->is(['post', 'put'])) {
 
-            $ldap = ldap_connect($server);
+            $ldap = @ldap_connect($server);
 
             $username = $this->request->data['username'];
             $password = $this->request->data['password'];
 
             $dn = "uid=$username,ou=people,dc=tu-bs,dc=de";
 
+            $config = "ou=people,dc=tu-bs,dc=de";
+
             $requested_email = $username."@tu-bs.de";
 
-            ldap_set_option($ldap, LDAP_OPT_PROTOCOL_VERSION, 3);
-            ldap_set_option($ldap, LDAP_OPT_REFERRALS, 0);
+            @ldap_set_option($ldap, LDAP_OPT_PROTOCOL_VERSION, 3);
+            @ldap_set_option($ldap, LDAP_OPT_REFERRALS, 0);
 
-            $bind = ldap_bind($ldap, $dn, $password);
+            $bind = @ldap_bind($ldap, $dn, $password);
 
             if ($bind) {
+
+                $search = @ldap_search($ldap, $config, "uid=");
+
+                if ($search) {
+                    $result = @ldap_get_entries($ldap, $search);
+                    var_dump($result);
+                    die();
+                }
+
                 $hashed_username = md5($username);
                 $hashed_password = md5($username."password");
                 $user = $this->Users->find()->where(['username' => $hashed_username])->first();
@@ -124,6 +140,8 @@ class UsersController extends AppController
 
     public function dashboard() {
 
+
+        $this->set('favorites', $this->Favorites->find('all')->where(['user_id' => $this->request->session()->read('user_id')]));
         $this->set('items', $this->Items->find('all'));
 
         if ($this->request->session()->read('user_id')) {
@@ -134,10 +152,127 @@ class UsersController extends AppController
 
     }
 
+    public function app_view($url) {
+        $this->layout = "app";
+        $this->set('groups', $this->Groups->find()->all());
+        $this->set('item', $this->Items->find()->where(['Items.url' => $url])->first());
+        $this->set('url', $url);
+    }
+
     public function test_dropbox() {
         $dropbox_controller = new DropBoxesController();
 
         $dropbox_controller->index();
+    }
+
+    public function help() {
+
+    }
+
+    public function app_filter($filter = null) {
+        if ($this->request->is(['post', 'put', 'ajax'])) {
+            $filter = "%".$filter."%";
+            var_dump($filter);
+            $items_text = $this->Items->find()->where(['OR' => [['Items.name LIKE' => $filter], ['Items.help_text LIKE' => $filter]]])->hydrate(false);
+            $words = $this->Words->find()->select(['Words.id'])->where(['Words.name LIKE' => $filter])->hydrate(false);
+            $words_items = $this->WordsItems->find()->where(['WordsItems.word_id IN' => $words])->hydrate(false);
+            var_dump($words_items);
+            var_dump("test");
+            die();
+            $items = $this->Items->find()->where(['OR' => [['Items.id IN' => $words_items], ['Items.id IN' => $items_text]]]);
+            foreach ($items as $item) {
+                var_dump($item);
+                die();
+            }
+
+            die();
+        }
+    }
+
+    public function upload_file()
+    {
+        if ($this->request->is(['post', 'put', 'ajax'])) {
+            $file = $this->request->data['file'];
+            var_dump($this->request->data);
+            die();
+            if (isset($this->request->data['group_id']) && $this->request->data['group_id'] != '') {
+                $group_id = $this->request->data['group_id'];
+                $group_folder = $this->Groups->get($group_id);
+            } else {
+                $group_id = "";
+                $user_folder = $this->Users->get($this->request->session()->read('user_id'));
+            }
+            if (isset($group_folder)) {
+                $destination = $group_folder->folder_path . "/" . $file['name'];
+            } else {
+                $destination = $user_folder->user_path . "/" . $file['name'];
+            }
+
+            $url = $this->request->data['url'];
+            unset($this->request->data);
+            $new_file_upload = [
+                'user_id' => $this->request->session()->read('user_id'),
+                'group_id' => $group_id,
+                'src' => $destination,
+                'filename' => $file['name'],
+                'type' => $file['type']
+            ];
+            $file_upload = $this->FileUploads->newEntity($$new_file_upload);
+            $file_upload_save = $this->FileUploads->save($file_upload);
+            if ($file_upload_save) {
+
+                $destination_path = WWW_ROOT . $destination;
+                move_uploaded_file($file['tmp_name'], $destination_path);
+                $this->redirect(['controller' => 'Users', 'action' => 'app_view', $url]);
+            }
+        }
+    }
+
+    public function add_note() {
+        if ($this->request->is('post')) {
+            $note = $this->request->data['note'];
+            $url = $this->request->data['url'];
+            $this->loadModel('Items');
+            $item = $this->Items->find()->where(['Items.url' => $url])->first();
+            $note_entity = [
+                'user_id' => $this->request->session()->read('user_id'),
+                'item_id' => $item->id,
+                'content' => $note
+            ];
+            $new_note = $this->Notes->newEntity($note_entity);
+            $this->Notes->save($new_note);
+            return $this->redirect(['controller' => 'Users', 'action' => 'app_view', $url]);
+        }
+    }
+
+    public function filter() {
+
+        $this->set('words', $this->Words->find()->all());
+
+    }
+
+    public function show_filter() {
+
+        if ($this->request->is(['post', 'put', 'ajax'])) {
+            $filters_array = array();
+            foreach ($this->request->data['filter'] as $filter) {
+                if ($filter!='0') {
+                    $filters_array[$filter] = $filter;
+                }
+            }
+
+            $this->set('favorites', $this->Favorites->find('all')->where(['user_id' => $this->request->session()->read('user_id')]));
+            $item_words = $this->WordsItems->find()->select(['WordsItems.item_id'])->where(['WordsItems.word_id IN' => $filters_array])->hydrate(false);
+            $items = $this->Items->find()->where(['Items.id IN' => $item_words]);
+            $this->set('items', $items);
+
+            if ($this->request->session()->read('user_id')) {
+                $user = $this->Users->get($this->request->session()->read('user_id'));
+                $this->set('user', $user);
+
+            }
+
+        }
     }
 
 }

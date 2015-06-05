@@ -1,18 +1,13 @@
-<div class="col-xs-2">
+<div class="col-lg-3 col-md-3 col-xs-3">
     <h3><?= __('Aktionen') ?></h3>
     <ul class="side-nav">
-        <li><?= $this->Form->postLink(
-                __('Löschen'),
-                ['action' => 'delete', $note->id],
-                ['confirm' => __('Bist du sicher?')]
-            )
-            ?></li>
-        <li><?= $this->Html->link(__('Notizen auflisten'), ['action' => 'index']) ?></li>
+        <?php $i_class = $this->Html->tag('i', '', ['class' => 'fa fa-hand-o-left', 'escape' => false]); ?>
+        <li><?= $this->Html->link($i_class . ' Notizen auflisten', ['action' => 'index'], ['class' => 'btn btn-danger', 'escape' => false]) ?></li>
     </ul>
 </div>
-<div class="col-xs-10">
+<div class="col-lg-9 col-md-9 col-xs-9">
     <?= $this->Form->create($note) ?>
-    <legend><?= __('ToDo bearbeiten') ?></legend>
+    <legend><?= __('Notiz bearbeiten') ?></legend>
     <?= $this->Form->hidden('user_id', ['value' => $note->user_id]) ?>
     <?= $this->Form->hidden('item_id', ['value' => $note->item_id]) ?>
     <div class="row">

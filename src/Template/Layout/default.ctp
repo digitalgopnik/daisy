@@ -29,7 +29,9 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     <?= $this->Html->css('bootstrap.css') ?>
     <?= $this->Html->css('//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css') ?>
     <?= $this->Html->css('style.css') ?>
-    <?= $this->Html->css('style-responsive.css') ?>
+    <?= $this->Html->css('style-responsive') ?>
+    <?= $this->Html->css('bootstrap-select.min') ?>
+    <?= $this->Html->css('bootstrap-select') ?>
 
     <?= $this->Html->script('jquery.js') ?>
     <?= $this->Html->script('bootstrap.min') ?>
@@ -40,6 +42,8 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     <?= $this->Html->script('common-scripts') ?>
     <?= $this->Html->script('sparkline-chart') ?>
     <?= $this->Html->script('chart-master/Chart') ?>
+    <?= $this->Html->script('bootstrap-select.min') ?>
+    <?= $this->Html->script('bootstrap-select') ?>
 
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
@@ -49,21 +53,40 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
 <section id="container">
     <header class="header black-bg">
         <!-- TU Braunschweig logo start-->
-        <a href="https://www.tu-braunschweig.de/" class="logo"><img alt="TU Braunschweig" src="img\siegel_rot.jpg"></a>
+        <a href="https://www.tu-braunschweig.de/" class="logo"><img alt="TU Braunschweig" src="http://localhost/uni/teamproject/img/siegel_rot.jpg"></a>
         <!--logo end-->
         <div class="nav notify-row" id="top_menu">
 
         </div>
         <div class="top-menu">
+
             <br>
             <ul class="nav pull-right top-menu">
                 <?php $user_id = $this->request->session()->read('user_id'); ?>
+                <?php $user_role = $this->request->session()->read('user_role'); ?>
                 <?php if (isset($user_id) && $user_id!='') {
                     echo $this->Html->link('Ausloggen', ['controller' => 'Users', 'action' => 'logout'], ['class' => 'btn btn-danger']);
                 } else {
                     echo $this->Html->link('Einloggen', ['controller' => 'Users', 'action' => 'login'], ['class' => 'btn btn-danger']);
                 } ?>
             </ul>
+        </div>
+
+        <div class="top-menu">
+            <form class="navbar-form navbar-left" role="search">
+                <div>
+                    <form class="bs-example bs-example-form" role="form">
+                        <div class="input-group">
+                            <input placeholder="Google Suche..." id="google_text" type="text" class="form-control">
+		        		<span class="input-group-btn">
+		                  <a class="btn btn-danger" id="google_search">
+                              <i class="fa fa-search"></i>
+                              </a>
+		        		</span>
+                        </div>
+                    </form>
+                </div>
+            </form>
         </div>
     </header>
 
@@ -99,7 +122,13 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
                         <?php
                         }
                         ?>
-                        <li><a href="#filter_modal" data-toggle="modal"><i class="fa fa-filter"></i>Kategorisieren</a></li>
+                        <li>
+                            <?php
+                            $i_class_filter = $this->Html->tag('i', '', ['class' => 'fa fa-filter', 'escape' => false]);
+                            $span_class_filter = $this->Html->tag('span', 'Filter', ['escape' => false]);
+                            echo $this->Html->link($i_class_filter . $span_class_filter, ['controller' => 'Users', 'action' => 'filter'], ['escape' => false]);
+                            ?>
+                        </li>
 
                     </ul>
                 </li>
@@ -137,17 +166,11 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
                 </li>-->
 
                 <li>
-                    <a href="#" href="javascript:;">
-                        <i class="fa fa-search"></i>
-                        <span>Apps suchen</span>
-                    </a>
-                </li>
-
-                <li>
-                    <a href="hilfe.html" href="javascript:;">
-                        <i class="fa fa-info-circle"></i>
-                        <span>Hilfe</span>
-                    </a>
+                    <?php
+                    $i_class_help = $this->Html->tag('i', '', ['class' => 'fa fa-info-circle', 'escape' => false]);
+                    $span_class_help = $this->Html->tag('span', 'Hilfe', ['escape' => false]);
+                    echo $this->Html->link($i_class_help . $span_class_help, ['controller' => 'Users', 'action' => 'help'], ['escape' => false]);
+                    ?>
                 </li>
 
                 <?php
@@ -179,7 +202,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
                 ?>
 
                 <?php
-                if (isset($user_id) && $user_id!=null) {
+                if (isset($user_id) && $user_id!=null && $user_role=='admin') {
                     ?>
                     <li>
                         <?php
@@ -206,8 +229,39 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
                 }
                 ?>
 
+                <?php
+                if (isset($user_id) && $user_id!=null && $user_role=='admin') {
+                    ?>
+                    <li>
+                        <?php
+                        $i_class_items = $this->Html->tag('i', '', ['class' => 'fa fa-at', 'escape' => false]);
+                        $span_class_items = $this->Html->tag('span', 'Apps', ['escape' => false]);
+                        echo $this->Html->link($i_class_items . $span_class_items, ['controller' => 'Items', 'action' => 'index'], ['escape' => false]);
+                        ?>
+                    </li>
+                <?php
+                }
+                ?>
+
             </ul>
             <!-- sidebar menu end-->
+            <!--
+            <div class="appsuche">
+                <form class="navbar-form navbar-left" role="search">
+                    <div>
+                        <form class="bs-example bs-example-form" role="form">
+                            <div class="input-group">
+                                <input placeholder="App suchen..." type="text" class="form-control" />
+								        		<span class="input-group-btn">
+								                  <button class="btn btn-danger" type="button">
+                                                      <i class="fa fa-search"></i>
+                                                  </button>
+								        		</span>
+                                </div>
+                        </form>
+                    </div>
+                </form>
+            </div>-->
         </div>
     </aside>
     <!--sidebar end-->
@@ -236,66 +290,33 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     <!--footer end-->
 </section>
 
-<div id="login_modal" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-sm">
-        <div class="modal-content">
-            <form class="form-login" action="index.html">
-                <h2 class="form-login-heading">sign in now</h2>
-                <div class="login-wrap">
-                    <input type="text" class="form-control" placeholder="User ID" autofocus>
-                    <br>
-                    <input type="password" class="form-control" placeholder="Password">
-                    <label class="checkbox">
-                    <span class="pull-right">
-                        <a data-toggle="modal" href="login.html#myModal"> Forgot Password?</a>
+    <script>
+        jQuery('#google_search').click(function() {
+            var q = jQuery('#google_text').val();
+            if (q==null) {
+                alert("Suchfeld ist leer");
+                die();
+            }
+            var url = "http://google.com/search?q="+q;
+            window.open(url, '_blank');
 
-                    </span>
-                    </label>
-                    <button class="btn btn-theme btn-danger" href="index.html" type="submit"><i class="fa fa-lock"></i> SIGN IN</button>
-                    <hr>
+        });
 
-
-                </div>
-        </div>
-    </div>
-</div>
-
-<div id="filter_modal" class="modal fade bs-kategorie-modal-lg" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="checkbox">
-                <div class="custom-check goleft mt">
-                    <table id="todo" class="table table-striped">
-                        <tbody>
-                        <?php echo $this->Form->create('Filter', ['controller' => 'Users', 'action' => 'apps']) ?>
-                        <?php $counter = 1; ?>
-                        <tr>
-                        <?php foreach ($words as $word) {
-                            if ($counter % 3 == 0) {
-                                echo '</tr>';
-                                echo '<tr>';
-                            }
-                            echo '<td><div class="checkbox"><label>';
-                            echo $this->Form->checkbox('filter.', ['multiple' => true, 'label' => false]);
-                            echo $word->name;
-                            echo '</div></td>';
-                            $counter += 1;
-                        }
-                        ?>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Schließen</button>
-                <button type="button" class="btn btn-primary">Filtern</button>
-            </div>
-
-        </div>
-
-    </div>
-</div>
-
+        jQuery('#app_search').click(function() {
+            var search = jQuery('#app_text').val();
+            console.log(search);
+            $.ajax({
+                url: 'http://localhost/uni/teamproject/Users/app_filter/'+search,
+                type: 'POST',
+                data: search,
+                dataType: 'json',
+                async: true,
+                cache: false
+            })
+                .always(function(data) {
+                    alert('Erfolgreich markiert!');
+                });
+        });
+    </script>
 </body>
 </html>

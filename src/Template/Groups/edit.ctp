@@ -18,6 +18,7 @@ foreach ($groups_users as $group_user) {
 ?>
 <div class="col-lg-6 col-md-6 col-xs-6">
     <?= $this->Form->create($group) ?>
+    <br>
     <legend><?= __('Gruppe bearbeiten') ?></legend>
     <div class="row">
         <div class="col-xs-3">

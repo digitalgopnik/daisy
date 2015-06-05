@@ -30,8 +30,10 @@ class ItemsTable extends Table
         $this->hasMany('Notes', [
             'foreignKey' => 'item_id'
         ]);
-        $this->hasMany('Words', [
-            'foreignKey' => 'item_id'
+        $this->belongsToMany('Words', [
+            'foreignKey' => 'word_id',
+            'targetForeignKey' => 'word_id',
+            'through' => 'words_items'
         ]);
     }
 

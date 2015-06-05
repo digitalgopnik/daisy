@@ -19,7 +19,7 @@ class WordsController extends AppController
 
         $user_id = $this->request->session()->read('user_id');
         $user_role = $this->request->session()->read('user_role');
-        if (!is_numeric($user_id) || $user_role=='student') {
+        if ($user_role=='student') {
             $this->redirect(['controller' => 'Users', 'action' => 'dashboard']);
         }
     }

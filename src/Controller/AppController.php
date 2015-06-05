@@ -28,6 +28,7 @@ namespace App\Controller;
 
 use Cake\Controller\Controller;
 use Cake\Event\Event;
+use Cake\ORM\TableRegistry;
 
 class AppController extends Controller
 {
@@ -38,5 +39,7 @@ class AppController extends Controller
 
     public function beforeFilter(Event $event) {
         parent::beforeFilter($event);
+
     }
+
 }

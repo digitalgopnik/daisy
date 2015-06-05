@@ -2,7 +2,8 @@
 <div class="col-lg-3 col-md-3 col-xs-3">
     <h3><?= __('Aktionen') ?></h3>
     <ul class="side-nav">
-        <li><?= $this->Html->link(__('Neue Datei anlegen'), ['action' => 'add']) ?></li>
+        <?php $i_class = $this->Html->tag('i', '', ['class' => 'fa fa-plus', 'escape' => false]); ?>
+        <li><?= $this->Html->link($i_class . ' Neue Datei anlegen', ['action' => 'add'], ['class' => 'btn btn-danger', 'escape' => false]) ?></li>
     </ul>
 </div>
 
@@ -12,7 +13,7 @@ foreach ($groups as $group) {
     $groups_array[$group->id] = $group->name;
 } */
 ?>
-<div class="col-lg-4 col-md-4 col-xs-4">
+<div class="col-lg-12 col-md-12 col-xs-12">
     <div class="panel">
         <div class="panel-heading">
             <h2>Meine Dateien</h2>
@@ -30,8 +31,10 @@ foreach ($groups as $group) {
                 <td><?= $this->Number->format($file_upload->id) ?></td>
                 <td><?= h($file_upload->filename) ?></td>
                 <td class="actions">
-                    <?= $this->Html->link(__('Bearbeiten'), ['action' => 'edit', $file_upload->id]) ?>
-                    <?= $this->Form->postLink(__('Löschen'), ['action' => 'delete', $file_upload->id], ['confirm' => __('Bist du sicher?')]) ?>
+                    <?php $edit_class = $this->Html->tag('i', '', ['class' => 'fa fa-pencil', 'escape' => false]); ?>
+                    <?php $delete_class = $this->Html->tag('i', '', ['class' => 'fa fa-trash-o', 'escape' => false]); ?>
+                    <?= $this->Html->link($edit_class . ' Bearbeiten', ['action' => 'edit', $file_upload->id], ['class' => 'btn btn-danger', 'escape' => false]) ?>
+                    <?= $this->Form->postLink($delete_class . ' Löschen', ['action' => 'delete', $file_upload->id], ['class' => 'btn btn-danger', 'escape' => false], ['confirm' => __('Bist du sicher?')]) ?>
                 </td>
             </tr>
 
@@ -57,7 +60,7 @@ foreach ($groups as $group) {
     $groups_array[$group->id] = $group->name;
 }
 ?>
-<div class="col-lg-4 col-md-4 col-xs-4">
+<div class="col-lg-12 col-md-12 col-xs-12">
     <div class="panel">
         <div class="panel-heading">
             <h2>Gruppen-Dateien</h2>
@@ -77,8 +80,10 @@ foreach ($groups as $group) {
                         <td><?= h($group_upload->filename) ?></td>
                         <td><?= $groups_array[$group_upload->group_id] ?></td>
                         <td class="actions">
-                            <?= $this->Html->link(__('Bearbeiten'), ['action' => 'edit', $group_upload->id]) ?>
-                            <?= $this->Form->postLink(__('Löschen'), ['action' => 'delete', $group_upload->id], ['confirm' => __('Bist du sicher?')]) ?>
+                            <?php $edit_class = $this->Html->tag('i', '', ['class' => 'fa fa-pencil', 'escape' => false]); ?>
+                            <?php $delete_class = $this->Html->tag('i', '', ['class' => 'fa fa-trash-o', 'escape' => false]); ?>
+                            <?= $this->Html->link($edit_class . ' Bearbeiten', ['action' => 'edit', $group_upload->id], ['class' => 'btn btn-danger', 'escape' => false]) ?>
+                            <?= $this->Form->postLink($delete_class . ' Löschen', ['action' => 'delete', $group_upload->id], ['class' => 'btn btn-danger', 'escape' => false], ['confirm' => __('Bist du sicher?')]) ?>
                         </td>
                     </tr>
 
