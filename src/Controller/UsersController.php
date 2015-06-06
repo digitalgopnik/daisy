@@ -52,6 +52,21 @@ class UsersController extends AppController
         //$this->Auth->allow(['login', 'logout', 'dashboard']);
     }
 
+    public function _checkClient() {
+
+        $this->loadModel('Configurations');
+
+        $configuration = $this->Configurations->get('1');
+
+        $ip_address = $_SERVER['REMOTE_ADDR'];
+
+        //if ($ip_address==$configuration->ip) {
+            return true;
+        /*} else {
+            return false;
+        }*/
+    }
+
     public function login()
     {
         $server = "ldapk5.tu-bs.de";
@@ -75,14 +90,14 @@ class UsersController extends AppController
             $bind = @ldap_bind($ldap, $dn, $password);
 
             if ($bind) {
-
+                /*
                 $search = @ldap_search($ldap, $config, "uid=");
 
                 if ($search) {
                     $result = @ldap_get_entries($ldap, $search);
                     var_dump($result);
                     die();
-                }
+                } */
 
                 $hashed_username = md5($username);
                 $hashed_password = md5($username."password");
@@ -112,7 +127,7 @@ class UsersController extends AppController
                 $this->request->session()->write('user_role', $user->role);
                 $this->redirect(['action' => 'dashboard']);
             } else {
-                $this->Flash->error(__('Benutzername oder Passwort nicht korrekt.'));
+                $this->Flash->error(__('Benutzername / Passwort falsch.'));
                 $this->redirect(['controller' => 'Users', 'action' => 'login']);
             }
 
@@ -153,10 +168,17 @@ class UsersController extends AppController
     }
 
     public function app_view($url) {
-        $this->layout = "app";
-        $this->set('groups', $this->Groups->find()->all());
-        $this->set('item', $this->Items->find()->where(['Items.url' => $url])->first());
-        $this->set('url', $url);
+
+        if ($this->_checkClient()==true) {
+            $this->layout = "app";
+            $this->set('groups', $this->Groups->find()->all());
+            $this->set('item', $this->Items->find()->where(['Items.url' => $url])->first());
+            $this->set('url', $url);
+
+        } else {
+            $this->Flash->error(__('Keinen Zugriff.'));
+            return $this->redirect(['controller' => 'Users', 'action' => 'dashboard']);
+        }
     }
 
     public function test_dropbox() {

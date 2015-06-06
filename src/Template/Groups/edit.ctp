@@ -1,13 +1,16 @@
 <div class="col-lg-3 col-md-3 col-xs-3">
     <h3><?= __('Aktionen') ?></h3>
     <ul class="side-nav">
+        <?php if (isset($is_admin) && $is_admin==true) { ?>
         <li><?= $this->Form->postLink(
                 __('Löschen'),
                 ['action' => 'delete', $group->id],
                 ['confirm' => __('Bist du sicher?')]
             )
             ?></li>
-        <li><?= $this->Html->link(__('Gruppen auflisten'), ['action' => 'index'], ['class' => 'btn btn-danger']) ?></li>
+        <?php } ?>
+        <?php $i_class_index = $this->Html->tag('i', '', ['class' => 'fa fa-hand-o-left', 'escape' => false]); ?>
+        <li><?= $this->Html->link($i_class_index . ' Gruppen auflisten', ['action' => 'index'], ['class' => 'btn btn-danger', 'escape' => false]) ?></li>
     </ul>
 </div>
 <?php
@@ -48,7 +51,8 @@ foreach ($groups_users as $group_user) {
         </div>
     </div>
     <br>
-    <?= $this->Form->button(__('Speichern'), ['class' => 'btn btn-danger']) ?>
+    <?php $i_class_save = $this->Html->tag('i', '', ['class' => 'fa fa-floppy-o', 'escape' => false]); ?>
+    <?= $this->Form->button($i_class_save . ' Speichern', ['class' => 'btn btn-danger', 'escape' => false]) ?>
     <?= $this->Form->end() ?>
 </div>
 

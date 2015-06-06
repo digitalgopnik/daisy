@@ -1,0 +1,28 @@
+div.message.error {
+    background-color: #d9534f;
+    width: 250px;
+    height: 50px;
+    padding: 10px;
+    margin-left: 35%;
+    color: #fff;
+    font-weight: bold;
+    text-align: center;
+    line-height: 30px;
+    position: absolute;
+    opacity: 0.8;
+    z-index: 9999;
+}
+div.message.success {
+    background-color: green;
+    width: 250px;
+    height: 50px;
+    padding: 10px;
+    margin-left: 35%;
+    color: #fff;
+    font-weight: bold;
+    text-align: center;
+    line-height: 30px;
+    position: absolute;
+    opacity: 0.8;
+    z-index: 9999;
+}

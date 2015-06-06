@@ -25,6 +25,11 @@
                     <div class="blog-text">
                         <div class="row">
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                <div class="row" style="margin-left: 20px; font-size: 14px"><p><?php echo $item->name; ?></p></div>
+
+                            </div>
+                            <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+                            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
                                 <?php $user_id = $this->request->session()->read('user_id'); ?>
                                 <?php if (isset($user_id) && $user_id!=null) { ?>
                                 <?php
@@ -59,7 +64,7 @@
                                             cache: false
                                         })
                                             .always(function (data) {
-                                                alert('Erfolgreich markiert!');
+                                                //alert('Erfolgreich markiert!');
                                             });
 
                                     });
@@ -77,7 +82,7 @@
                                             cache: false
                                         })
                                             .always(function (data) {
-                                                alert('Erfolgreich de-markiert!');
+                                                //alert('Erfolgreich de-markiert!');
                                             });
 
                                     });
@@ -87,7 +92,7 @@
                                 }
                                 ?>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
                                 <p><a data-toggle="modal " href="#info_modal<?php echo $item->id; ?>"><i class="fa fa-info-circle fa-2x"></i></a></p>
                                 <script>
                                 </script>

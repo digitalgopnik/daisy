@@ -1,4 +1,3 @@
-<br>
 <div class="col-lg-3 col-md-3 col-xs-3">
     <h3><?= __('Aktionen') ?></h3>
     <ul class="side-nav">
@@ -7,6 +6,7 @@
     </ul>
 </div>
 <div class="col-lg-9 col-md-9 col-xs-9">
+    <br>
     <table id="data_table" class="table table-striped table-bordered dataTable no-footer" cellpadding="0" cellspacing="0">
     <thead>
         <tr>

@@ -10,6 +10,9 @@
 
     <title>The Dashboard</title>
 
+    <?= $this->Html->css('custom.css') ?>
+    <?= $this->Html->css('concise.min.css') ?>
+    <?= $this->Html->css('concise.css') ?>
     <?= $this->Html->css('files/bootstrap.css') ?>
     <?= $this->Html->css('files/style.css'); ?>
     <?= $this->Html->css('files/style-responsive.css'); ?>
@@ -17,6 +20,8 @@
 
 
     <?= $this->Html->script('files/Chart.js') ?>
+    <?= $this->Html->script('concise.min.js') ?>
+    <?= $this->Html->script('concise.js') ?>
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
@@ -24,33 +29,19 @@
 </head>
 <body>
 <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
-
-<?php echo $this->fetch('content'); ?>
-
+    <?php echo $this->fetch('content'); ?>
 <script>
     jQuery('a#show_touch_companion').click(function() {
-        jQuery('a.iframebutton1').css('display', 'block');
-        jQuery('a.iframebutton2').css('display', 'block');
-        jQuery('a.iframebutton3').css('display', 'block');
-        jQuery('a.iframebutton4').css('display', 'block');
+        jQuery('div#layer_div').fadeIn(500);
+        jQuery('div#div_src').css('display', 'block');
         jQuery('a#show_touch_companion').css('display', 'none');
         jQuery('a#hide_touch_companion').css('display', 'block');
-        jQuery('div#div_src').css('margin-top', '-265px');
-        jQuery('div#div_src').css('background-color', '#fff');
-        jQuery('div#div_src').css('width', '160px');
-        jQuery('div#div_src').css('height', '180px');
     });
     jQuery('a#hide_touch_companion').click(function() {
-        jQuery('a.iframebutton1').css('display', 'none');
-        jQuery('a.iframebutton2').css('display', 'none');
-        jQuery('a.iframebutton3').css('display', 'none');
-        jQuery('a.iframebutton4').css('display', 'none');
+        jQuery('div#layer_div').fadeOut(200);
+        jQuery('div#div_src').css('display', 'none');
         jQuery('a#hide_touch_companion').css('display', 'none');
         jQuery('a#show_touch_companion').css('display', 'block');
-        jQuery('div#div_src').css('margin-top', '-130px');
-        jQuery('div#div_src').css('background-color', 'transparent');
-        jQuery('div#div_src').css('width', '40px');
-        jQuery('div#div_src').css('height', '40px');
     })
 
 </script>

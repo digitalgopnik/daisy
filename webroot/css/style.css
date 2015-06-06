@@ -235,7 +235,7 @@ ul.top-menu > li > .logout {
 /*sidebar navigation*/
 
 #sidebar {
-    width: 210px;
+    width: 198px;
     height: 100%;
     position: fixed;
     background: #fff;
@@ -356,6 +356,7 @@ ul.sidebar-menu li a span{
 }
 
 ul.sidebar-menu li a{
+    border: 1px solid #bc213f;
     color: #333;
     text-decoration: none;
     display: block;
@@ -367,6 +368,10 @@ ul.sidebar-menu li a{
     -o-transition: all 0.3s ease;
     -ms-transition: all 0.3s ease;
     transition: all 0.3s ease;
+}
+
+ul.sub li a {
+    border: none;
 }
 
 ul.sidebar-menu li a.active, ul.sidebar-menu li a:hover, ul.sidebar-menu li a:focus {

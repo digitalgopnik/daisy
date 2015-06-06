@@ -8,10 +8,11 @@
 <div class="col-lg-9 col-md-9 col-xs-9">
     <?= $this->Form->create($todo) ?>
     <?= $this->Form->hidden('user_id') ?>
+    <br>
     <legend><?= __('Aufgabe hinzufügen') ?></legend>
     <div class="row">
         <div class="col-xs-3">
-            <label for="name">Name</label>
+            <label for="name">Aufgabe</label>
         </div>
         <div class="col-xs-9">
             <?php

@@ -19,8 +19,8 @@
             ?>
         </div>
     </div>
-    <?php $i_class_submit = $this->Html->tag('i', '', ['class' => 'fa fa-plus', 'escape' => false]); ?>
-    <?= $this->Form->button($i_class_submit . ' Speichern', ['class' => 'btn btn-danger', 'escape' => false]) ?>
+    <?php $i_class_save = $this->Html->tag('i', '', ['class' => 'fa fa-floppy-o', 'escape' => false]); ?>
+    <?= $this->Form->button($i_class_save . ' Speichern', ['class' => 'btn btn-danger', 'escape' => false]) ?>
     <?= $this->Form->end() ?>
 </div>
 

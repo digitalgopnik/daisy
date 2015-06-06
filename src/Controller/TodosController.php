@@ -45,10 +45,10 @@ class TodosController extends AppController
             $this->request->data['user_id'] = $this->request->session()->read('user_id');
             $todo = $this->Todos->patchEntity($todo, $this->request->data);
             if ($this->Todos->save($todo)) {
-                $this->Flash->success(__('The todo has been saved.'));
+                $this->Flash->success(__('Die Aufgabe wurde gespeichert.'));
                 return $this->redirect(['action' => 'index']);
             } else {
-                $this->Flash->error(__('The todo could not be saved. Please, try again.'));
+                $this->Flash->error(__('Die Aufgabe wurde nicht gespeichert.'));
             }
         }
         $this->set(compact('todo'));
@@ -70,10 +70,10 @@ class TodosController extends AppController
         if ($this->request->is(['patch', 'post', 'put'])) {
             $todo = $this->Todos->patchEntity($todo, $this->request->data);
             if ($this->Todos->save($todo)) {
-                $this->Flash->success(__('The todo has been saved.'));
+                $this->Flash->success(__('Die Aufgabe wurde gespeichert.'));
                 return $this->redirect(['action' => 'index']);
             } else {
-                $this->Flash->error(__('The todo could not be saved. Please, try again.'));
+                $this->Flash->error(__('Die Aufgabe wurde nicht gespeichert.'));
             }
         }
         $this->set(compact('todo'));
@@ -92,9 +92,9 @@ class TodosController extends AppController
         $this->request->allowMethod(['post', 'delete']);
         $todo = $this->Todos->get($id);
         if ($this->Todos->delete($todo)) {
-            $this->Flash->success(__('The todo has been deleted.'));
+            $this->Flash->success(__('Die Aufgabe wurde gelöscht.'));
         } else {
-            $this->Flash->error(__('The todo could not be deleted. Please, try again.'));
+            $this->Flash->error(__('Die Aufgabe wurde nicht gelöscht.'));
         }
         return $this->redirect(['action' => 'index']);
     }

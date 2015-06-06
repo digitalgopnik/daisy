@@ -54,8 +54,8 @@
         </div>
     </div>
     <br>
-    <?php $i_class_submit = $this->Html->tag('i', '', ['class' => 'fa fa-plus', 'escape' => false]); ?>
-    <?= $this->Form->button($i_class_submit . ' Anlegen', ['class' => 'btn btn-danger']) ?>
+    <?php $i_class_save = $this->Html->tag('i', '', ['class' => 'fa fa-floppy-o', 'escape' => false]); ?>
+    <?= $this->Form->button($i_class_save . ' Speichern', ['class' => 'btn btn-danger', 'escape' => false]) ?>
     <?= $this->Form->end() ?>
 </div>
 <?php
@@ -103,9 +103,9 @@ foreach ($selected_words as $selected_word) {
         </div>
     </div>
     <?php if (!empty($words_array)) {?>
-    <?php $i_class_submit = $this->Html->tag('i', '', ['class' => 'fa fa-plus', 'escape' => false]); ?>
-    <?= $this->Form->button($i_class_submit . ' Wörter speichern', ['class' => 'btn btn-danger']) ?>
-    <?php } ?>
+    <?php $i_class_save = $this->Html->tag('i', '', ['class' => 'fa fa-floppy-o', 'escape' => false]); ?>
+    <?= $this->Form->button($i_class_save . ' Speichern', ['class' => 'btn btn-danger', 'escape' => false]) ?>
+    <?php }?>
     <?= $this->Form->end() ?>
 </div>
 

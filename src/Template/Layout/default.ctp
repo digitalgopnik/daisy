@@ -32,6 +32,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     <?= $this->Html->css('style-responsive') ?>
     <?= $this->Html->css('bootstrap-select.min') ?>
     <?= $this->Html->css('bootstrap-select') ?>
+    <?= $this->Html->css('custom.css') ?>
 
     <?= $this->Html->script('jquery.js') ?>
     <?= $this->Html->script('bootstrap.min') ?>
@@ -53,7 +54,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
 <section id="container">
     <header class="header black-bg">
         <!-- TU Braunschweig logo start-->
-        <a href="https://www.tu-braunschweig.de/" class="logo"><img alt="TU Braunschweig" src="http://localhost/uni/teamproject/img/siegel_rot.jpg"></a>
+        <a href="https://www.tu-braunschweig.de/" class="logo"><img style="margin-left: -15px" alt="TU Braunschweig" src="http://localhost/uni/teamproject/img/siegel_rot.jpg"></a>
         <!--logo end-->
         <div class="nav notify-row" id="top_menu">
 
@@ -73,20 +74,14 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
         </div>
 
         <div class="top-menu">
-            <form class="navbar-form navbar-left" role="search">
-                <div>
-                    <form class="bs-example bs-example-form" role="form">
-                        <div class="input-group">
-                            <input placeholder="Google Suche..." id="google_text" type="text" class="form-control">
-		        		<span class="input-group-btn">
-		                  <a class="btn btn-danger" id="google_search">
-                              <i class="fa fa-search"></i>
-                              </a>
-		        		</span>
-                        </div>
-                    </form>
-                </div>
-            </form>
+            <div class="input-group" style="width: 300px; margin-left: 225px">
+                <input placeholder="Google Suche..." id="google_text" type="text" class="form-control">
+		        <span class="input-group-btn">
+                    <a class="btn btn-danger" id="google_search">
+                        <i class="fa fa-search"></i>
+                    </a>
+		        </span>
+            </div>
         </div>
     </header>
 
@@ -97,10 +92,31 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
 
 
                 <li class="sub-menu">
-                    <a href="javascript:;">
+                    <a id="show_app_sub" href="javascript:;">
                         <i class="fa fa-desktop"></i>
                         <span>Apps</span>
+                        <i id="show" style="margin-left:90px" class="fa fa-toggle-down"></i>
                     </a>
+                    <a id="hide_app_sub" style="display: none" href="javascript:;">
+                        <i class="fa fa-desktop"></i>
+                        <span>Apps</span>
+                        <i id="hide" style="margin-left:90px; display: none;" class="fa fa-toggle-up"></i>
+                    </a>
+                    <script>
+                        jQuery('#show_app_sub').click(function() {
+                           jQuery('#show').css('display', 'none');
+                           jQuery('#show_app_sub').css('display', 'none');
+                           jQuery('#hide_app_sub').css('display', 'block');
+                           jQuery('#hide').css('display', 'inline');
+                        });
+                        jQuery('#hide_app_sub').click(function() {
+                           jQuery('#hide').css('display', 'none');
+                           jQuery('#hide_app_sub').css('display', 'none');
+                           jQuery('#show_app_sub').css('display', 'block');
+                           jQuery('#show').css('display', 'inline');
+
+                        });
+                    </script>
                     <ul class="sub">
                         <li>
                             <?php
@@ -146,24 +162,6 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
                 <?php
                 }
                 ?>
-                <!-- Kategorisieren der Tools (Apps) example: Sort 1, 2 & 3 -->
-                <!--<li class="sub-menu">
-                    <a href="javascript:;" >
-                        <i class="fa fa-sort"></i>
-                        <span>Kategorisieren</span>
-                    </a>
-                    <ul class="sub">
-                        <li>
-                            <div class="checkbox">
-                              <label>
-                                <input type="checkbox"> Sort 1
-                              </label>
-                            </div>
-                          </li>
-                           <li><a  href="Sort2.html">Sort2</a></li>
-                        <li><a  href="Sort3.html">Sort3</a></li>
-                    </ul>
-                </li>-->
 
                 <li>
                     <?php
@@ -178,7 +176,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
                     ?>
                     <li>
                         <?php
-                        $i_class_todos = $this->Html->tag('i', '', ['class' => 'fa fa-star', 'escape' => false]);
+                        $i_class_todos = $this->Html->tag('i', '', ['class' => 'fa fa-list-ol', 'escape' => false]);
                         $span_class_todos = $this->Html->tag('span', 'Todo-Liste', ['escape' => false]);
                         echo $this->Html->link($i_class_todos . $span_class_todos, ['controller' => 'Todos', 'action' => 'index'], ['escape' => false]);
                         ?>
@@ -192,7 +190,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
                     ?>
                     <li>
                         <?php
-                        $i_class_notes = $this->Html->tag('i', '', ['class' => 'fa fa-server', 'escape' => false]);
+                        $i_class_notes = $this->Html->tag('i', '', ['class' => 'fa fa-clipboard', 'escape' => false]);
                         $span_class_notes = $this->Html->tag('span', 'Notizen', ['escape' => false]);
                         echo $this->Html->link($i_class_notes . $span_class_notes, ['controller' => 'Notes', 'action' => 'index'], ['escape' => false]);
                         ?>
@@ -291,15 +289,31 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
 </section>
 
     <script>
+        // Falls per Klick bestätigt wurde
         jQuery('#google_search').click(function() {
             var q = jQuery('#google_text').val();
-            if (q==null) {
-                alert("Suchfeld ist leer");
-                die();
+            if (q=='') {
+                jQuery('.wrapper.site-min-height').append('<div style=\"top: 75px\" class=\"message error\">Suchfeld ist leer.</div>');
+                jQuery('div.message.error').delay('1000').fadeOut('5000');
+            } else {
+                var url = "http://google.com/search?q=" + q;
+                window.open(url, '_blank');
             }
-            var url = "http://google.com/search?q="+q;
-            window.open(url, '_blank');
+        });
 
+        // Falls mit Enter bestätigt wurde
+        jQuery(document).keypress(function(e) {
+            var is_focus = $('#google_text').is(":focus");
+            if (e.which == 13 && is_focus == true) {
+                var q = jQuery('#google_text').val();
+                if (q == '') {
+                    jQuery('.wrapper.site-min-height').append('<div style=\"top: 75px\" class=\"message error\">Suchfeld ist leer.</div>');
+                    jQuery('div.message.error').delay('1000').fadeOut('5000');
+                } else {
+                    var url = "http://google.com/search?q="+q;
+                    window.open(url, '_blank');
+                }
+            }
         });
 
         jQuery('#app_search').click(function() {
@@ -314,9 +328,13 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
                 cache: false
             })
                 .always(function(data) {
-                    alert('Erfolgreich markiert!');
                 });
         });
+    </script>
+
+    <script>
+        jQuery('div.message.success').delay('3000').fadeOut('5000');
+        jQuery('div.message.error').delay('3000').fadeOut('5000');
     </script>
 </body>
 </html>

@@ -1,7 +1,7 @@
 <div class="col-lg-3 col-md-3 col-xs-3">
     <h3><?= __('Aktionen') ?></h3>
     <ul class="side-nav">
-        <?php $i_class = $this->Html->tag('i', '', ['class' => 'fa fa-plus', 'escape' => false]); ?>
+        <?php $i_class = $this->Html->tag('i', '', ['class' => 'fa fa-hand-o-left', 'escape' => false]); ?>
         <li><?= $this->Html->link($i_class . ' Schlagwörter auflisten', ['action' => 'index'], ['class' => 'btn btn-danger', 'escape' => false]) ?></li>
     </ul>
 </div>
@@ -20,7 +20,8 @@
         </div>
     </div>
     <br>
-    <?= $this->Form->button(__('Anlegen'), ['class' => 'btn btn-danger']) ?>
+    <?php $i_class_plus = $this->Html->tag('i', '', ['class' => 'fa fa-plus', 'escape' => false]); ?>
+    <?= $this->Form->button($i_class_plus . ' Anlegen', ['class' => 'btn btn-danger', 'escape' => false]) ?>
     <?= $this->Form->end() ?>
 </div>
 

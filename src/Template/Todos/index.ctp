@@ -1,4 +1,3 @@
-<br>
 <div class="col-lg-3 col-md-3 col-xs-3">
     <h3><?= __('Aktionen') ?></h3>
     <ul class="side-nav">
@@ -7,10 +6,11 @@
     </ul>
 </div>
 <div class="col-lg-9 col-md-9 col-xs-9">
+    <br>
     <table id="data_table" class="table table-striped table-bordered dataTable no-footer" cellpadding="0" cellspacing="0">
     <thead>
             <th>#</th>
-            <th>Name</th>
+            <th>Aufgabe</th>
             <th>Abgeschlossen</th>
             <th>Frist</th>
             <th>Erstellt</th>
@@ -22,7 +22,12 @@
         <tr>
             <td><?= $this->Number->format($todo->id) ?></td>
             <td><?= h($todo->name) ?></td>
-            <td><?= h($todo->done) ?></td>
+            <td><?php
+                if ($todo->done==1) {
+                    echo '<span class="label label-success">Erledigt</span>';
+                } else {
+                    echo '<span class="label label-danger">In Bearbeitung</span>';
+                } ?></td>
             <td><?= h($todo->due_date) ?></td>
             <td><?= h($todo->created) ?></td>
             <td><?= h($todo->extra) ?></td>

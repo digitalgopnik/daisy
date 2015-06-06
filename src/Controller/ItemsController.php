@@ -49,10 +49,10 @@ class ItemsController extends AppController
         if ($this->request->is('post')) {
             $item = $this->Items->patchEntity($item, $this->request->data);
             if ($this->Items->save($item)) {
-                $this->Flash->success(__('The item has been saved.'));
+                $this->Flash->success(__('Die App wurde gespeichert.'));
                 return $this->redirect(['action' => 'index']);
             } else {
-                $this->Flash->error(__('The item could not be saved. Please, try again.'));
+                $this->Flash->error(__('Die App wurde nicht gespeichert.'));
             }
         }
         $this->set(compact('item'));
@@ -74,10 +74,10 @@ class ItemsController extends AppController
         if ($this->request->is(['patch', 'post', 'put'])) {
             $item = $this->Items->patchEntity($item, $this->request->data);
             if ($this->Items->save($item)) {
-                $this->Flash->success(__('The item has been saved.'));
+                $this->Flash->success(__('Die App wurde gespeichert.'));
                 return $this->redirect(['action' => 'index']);
             } else {
-                $this->Flash->error(__('The item could not be saved. Please, try again.'));
+                $this->Flash->error(__('Die App wurde nicht gespeichert.'));
             }
         }
         $this->loadModel('Words');
@@ -120,9 +120,9 @@ class ItemsController extends AppController
         $this->request->allowMethod(['post', 'delete']);
         $item = $this->Items->get($id);
         if ($this->Items->delete($item)) {
-            $this->Flash->success(__('The item has been deleted.'));
+            $this->Flash->success(__('Die App wurde gelöscht.'));
         } else {
-            $this->Flash->error(__('The item could not be deleted. Please, try again.'));
+            $this->Flash->error(__('Die App wurde nicht gelöscht.'));
         }
         return $this->redirect(['action' => 'index']);
     }

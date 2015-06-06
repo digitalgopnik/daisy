@@ -2,7 +2,7 @@
 <div class="checkbox">
     <div class="custom-check goleft mt">
         <?php echo $this->Form->create('Filter', ['controller' => 'Users', 'action' => 'show_filter']) ?>
-        <table id="todo" class="table table-striped">
+        <table id="todo" cellspacing="12" cellpadding="12">
             <tbody>
             <?php $counter = 1; ?>
             <tr>
@@ -11,7 +11,7 @@
                         echo '</tr>';
                         echo '<tr>';
                     }
-                    echo '<td><div class="checkbox"><label>';
+                    echo '<td width="200px"><div class="checkbox"><label>';
                     echo $this->Form->checkbox('filter.', ['multiple' => true, 'label' => false, 'value' => $word->id]);
                     echo $word->name;
                     echo '</div></td>';
@@ -21,6 +21,7 @@
             </tr>
             </tbody>
         </table>
+        <br>
         <?php echo $this->Form->button(__('Absenden'), ['class' => 'btn btn-danger']); ?>
         <?php echo $this->Form->end(); ?>
 

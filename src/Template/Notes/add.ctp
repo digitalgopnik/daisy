@@ -9,6 +9,7 @@
     <?= $this->Form->create($note) ?>
     <?= $this->Form->hidden('user_id') ?>
     <?= $this->Form->hidden('item_id') ?>
+    <br>
     <legend><?= __('Notiz hinzufügen') ?></legend>
     <div class="row">
         <div class="col-xs-3">

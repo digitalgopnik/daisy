@@ -52,7 +52,7 @@
                                         cache: false
                                     })
                                         .always(function(data) {
-                                            alert('Erfolgreich markiert!');
+                                            //alert('Erfolgreich markiert!');
                                         });
 
                                 });
@@ -70,7 +70,7 @@
                                         cache: false
                                     })
                                         .always(function(data) {
-                                            alert('Erfolgreich de-markiert!');
+                                            //alert('Erfolgreich de-markiert!');
                                         });
 
                                 });

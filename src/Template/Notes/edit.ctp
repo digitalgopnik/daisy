@@ -7,6 +7,7 @@
 </div>
 <div class="col-lg-9 col-md-9 col-xs-9">
     <?= $this->Form->create($note) ?>
+    <br>
     <legend><?= __('Notiz bearbeiten') ?></legend>
     <?= $this->Form->hidden('user_id', ['value' => $note->user_id]) ?>
     <?= $this->Form->hidden('item_id', ['value' => $note->item_id]) ?>
@@ -20,7 +21,8 @@
             ?>
         </div>
     </div>
-    <?= $this->Form->button(__('Speichern'), ['class' => 'btn btn-danger']) ?>
+    <?php $i_class_save = $this->Html->tag('i', '', ['class' => 'fa fa-floppy-o', 'escape' => false]); ?>
+    <?= $this->Form->button($i_class_save . ' Speichern', ['class' => 'btn btn-danger', 'escape' => false]) ?>
     <?= $this->Form->end() ?>
 </div>
 

@@ -56,10 +56,10 @@ class NotesController extends AppController
             $this->request->data['user_id'] = $this->request->session()->read('user_id');
             $note = $this->Notes->patchEntity($note, $this->request->data);
             if ($this->Notes->save($note)) {
-                $this->Flash->success(__('The note has been saved.'));
+                $this->Flash->success(__('Die Notiz wurde gespeichert.'));
                 return $this->redirect(['action' => 'index']);
             } else {
-                $this->Flash->error(__('The note could not be saved. Please, try again.'));
+                $this->Flash->error(__('Die Notiz wurde nicht gespeichert.'));
             }
         }
         $this->set(compact('note'));
@@ -84,10 +84,10 @@ class NotesController extends AppController
         if ($this->request->is(['patch', 'post', 'put'])) {
             $note = $this->Notes->patchEntity($note, $this->request->data);
             if ($this->Notes->save($note)) {
-                $this->Flash->success(__('The note has been saved.'));
+                $this->Flash->success(__('Die Notiz wurde gespeichert.'));
                 return $this->redirect(['action' => 'index']);
             } else {
-                $this->Flash->error(__('The note could not be saved. Please, try again.'));
+                $this->Flash->error(__('Die Notiz wurde nicht gespeichert.'));
             }
         }
         $this->set(compact('note'));
@@ -106,9 +106,9 @@ class NotesController extends AppController
         $this->request->allowMethod(['post', 'delete']);
         $note = $this->Notes->get($id);
         if ($this->Notes->delete($note)) {
-            $this->Flash->success(__('The note has been deleted.'));
+            $this->Flash->success(__('Die Notiz wurde gelöscht.'));
         } else {
-            $this->Flash->error(__('The note could not be deleted. Please, try again.'));
+            $this->Flash->error(__('Die Notiz wurde nicht gelöscht.'));
         }
         return $this->redirect(['action' => 'index']);
     }

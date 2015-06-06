@@ -19,6 +19,9 @@
     #main-content {
         margin-left: 110px !important
     }
+    p {
+        color: #333;
+    }
 </style>
 <section id="main-content">
     <section class="wrapper site-min-height">
@@ -39,14 +42,11 @@
             <div id="section-bar-1" class="col-md-12">
                 <div class="white-panel pn1">
                     <div class="custom-check goleft mt">
-                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <h3>Apps</h3></br>
                             <p>Unter dem Reiter Apps werden zunächst alle Apps dargestellt.</p>
                             <p>Unter dem Reiter Favoriten werden alle Apps dargestellt, die zuvor mit Hilfe des Stern-Buttons als Favorit markiert wurden.</p>
                             <p>Unter dem Reiter Kategorisieren ist das Filtern von Apps nach Schlagworten möglich. Die Schlagworte können durch Setzen eines Hakens markiert werden.</p>
-                        </div>
-                        <div class="col-md-6">
-                            <img src="assets/img/siegel_rot.jpg" style="width: 100%;">
                         </div>
                     </div>
                 </div>
@@ -54,7 +54,7 @@
             <div id="section-bar-2" class="col-md-12">
                 <div class="white-panel pn2">
                     <div class="custom-check goleft mt">
-                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <a name='section-bar-2' style='position:relative; top:50px;'></a>
                             <h3>Dateien</h3></br>
                             <p>Unter „Meine Dateien“ werden private Dateien gespeichert.</p>
@@ -62,21 +62,15 @@
                             <p>Grundsätzlich besteht die Möglichkeit, die Dateien zu bearbeiten oder zu löschen, sowie neue Dateien anzulegen. Mit Klick auf den Button „neue Datei anlegen“ lassen sich neue Dateien ins Dashboard hochladen. Diese können auch einer Lerngruppe zugeordnet werden.</p>
                             <p>Das Speichern von Dateien auf dem Desktop in den einzelnen Anwendungen ist der jeweiligen App-Hilfe näher erläutert.</p>
                         </div>
-                        <div class="col-md-6">
-                            <img src="assets/img/siegel_rot.jpg" style="width: 100%;">
-                        </div>
                     </div>
                 </div>
             </div>
             <div id="section-bar-3" class="col-md-12">
                 <div class="white-panel pn1">
                     <div class="custom-check goleft mt">
-                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <h3>Suche</h3></br>
                             <p>Mit Hilfe eines Suchbefehls lassen sich Apps nach Namen, Schlagworten oder Beschreibungen des Infotextes suchen. Diese Suchbefehle werden in ein Suchfenster eingegeben.</p>
-                        </div>
-                        <div class="col-md-6">
-                            <img src="assets/img/siegel_rot.jpg" style="width: 100%;">
                         </div>
                     </div>
                 </div>
@@ -84,13 +78,10 @@
             <div id="section-bar-4" class="col-md-12">
                 <div class="white-panel pn1">
                     <div class="custom-check goleft mt">
-                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <h3>ToDo Liste</h3></br>
                             <p>Mit der Funktion „Neue Aufgabe anlegen“ lassen sich neue Aufgaben erstellen. Diese können durch Setzen eines Hakens als abgeschlossen markiert werden.</p>
                             <p>Außerdem können die Aufgaben durch die Funktion „bearbeiten“  noch verändert und der Funktion „löschen“ gelöscht werden.</p>
-                        </div>
-                        <div class="col-md-6">
-                            <img src="assets/img/siegel_rot.jpg" style="width: 100%;">
                         </div>
                     </div>
                 </div>
@@ -98,14 +89,11 @@
             <div id="section-bar-5" class="col-md-12">
                 <div class="white-panel pn1">
                     <div class="custom-check goleft mt">
-                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <h3>Notizen</h3></br>
                             <p>Mit der Funktion „Neue Notiz anlegen“ lassen sich neue Notizen erstellen.</p>
                             <p>Wenn Notizen mit Hilfe des Companions erstellt wurden, werden die dazugehörigen Tools angezeigt.</p>
                             <p>Notizen können durch die Funktion „bearbeiten“ verändert oder die Funktion „löschen“ gelöscht werden.</p>
-                        </div>
-                        <div class="col-md-6">
-                            <img src="assets/img/siegel_rot.jpg" style="width: 100%;">
                         </div>
                     </div>
                 </div>
@@ -113,14 +101,11 @@
             <div id="section-bar-6" class="col-md-12">
                 <div class="white-panel pn1">
                     <div class="custom-check goleft mt">
-                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <h3>Gruppen</h3></br>
                             <p>Mit der Funktion „Neue Gruppe anlegen“ kann eine neue Gruppe erstellt werden.</p>
                             <p>Dieser muss zunächst ein Name gegeben und Mitglieder durch die tu-braunschweig-emailadresse hinzugefügt werden. Zum Bestätigen muss der Button „Anlegen“ gedrückt werden.</p>
                             <p>Gruppen können durch die Funktion „bearbeiten“ verändert und die Funktion „löschen“ gelöscht werden.</p>
-                        </div>
-                        <div class="col-md-6">
-                            <img src="assets/img/siegel_rot.jpg" style="width: 100%;">
                         </div>
                     </div>
                 </div>
