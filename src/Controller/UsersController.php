@@ -60,11 +60,11 @@ class UsersController extends AppController
 
         $ip_address = $_SERVER['REMOTE_ADDR'];
 
-        //if ($ip_address==$configuration->ip) {
+        if ($ip_address==$configuration->ip) {
             return true;
-        /*} else {
+        } else {
             return false;
-        }*/
+        }
     }
 
     public function login()
