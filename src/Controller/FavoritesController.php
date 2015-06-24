@@ -78,6 +78,12 @@ class FavoritesController extends AppController
 
         }
 
+        $this->loadModel('Configurations');
+
+        $configuration = $this->Configurations->get('1');
+
+        $this->set('host_server', $configuration->host);
+
     }
 }
 

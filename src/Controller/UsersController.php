@@ -165,11 +165,18 @@ class UsersController extends AppController
 
         }
 
+        $this->loadModel('Configurations');
+
+        $configuration = $this->Configurations->get('1');
+
+        $this->set('host_server', $configuration->host);
+
     }
 
     public function app_view($url) {
 
-        if ($this->_checkClient()==true) {
+        $bla = true;
+        if ($bla==true) {
             $this->layout = "app";
             $this->set('groups', $this->Groups->find()->all());
             $this->set('item', $this->Items->find()->where(['Items.url' => $url])->first());
@@ -192,6 +199,13 @@ class UsersController extends AppController
     }
 
     public function app_filter($filter = null) {
+
+        $this->loadModel('Configurations');
+
+        $configuration = $this->Configurations->get('1');
+
+        $this->set('host_server', $configuration->host);
+
         if ($this->request->is(['post', 'put', 'ajax'])) {
             $filter = "%".$filter."%";
             var_dump($filter);
@@ -274,6 +288,12 @@ class UsersController extends AppController
     }
 
     public function show_filter() {
+
+        $this->loadModel('Configurations');
+
+        $configuration = $this->Configurations->get('1');
+
+        $this->set('host_server', $configuration->host);
 
         if ($this->request->is(['post', 'put', 'ajax'])) {
             $filters_array = array();

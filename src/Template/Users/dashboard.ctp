@@ -10,9 +10,9 @@
             ?>
             <div class="col-lg-3 col-md-3 col-sm-3 mb">
                 <div class="content-panel pn">
-
-                    <a href="http://localhost/uni/teamproject/App/<?php echo $item->url; ?>">
+                    <a href="<?php echo $host_server; ?>/App/<?php echo $item->url; ?>">
                         <?php
+
                         $url = "http://localhost".$this->request->base.$item->image_url;
                         $background_variable = "background-image: url($url);";
                         ?>
@@ -50,13 +50,14 @@
                                 ?>
 
                                 <script>
+                                    var host_server = <?php echo json_encode($host_server); ?>;
 
                                     jQuery('#add<?php echo json_decode($item->id); ?>').click(function () {
 
                                         jQuery('#add_i<?php echo json_decode($item->id);?>').css('color', 'orange');
 
                                         $.ajax({
-                                            url: 'http://localhost/uni/teamproject/Favorites/add/<?php echo json_decode($item->id); ?>',
+                                            url: host_server + '/Favorites/add/<?php echo json_decode($item->id); ?>',
                                             type: 'POST',
                                             data: 'test',
                                             dataType: 'json',
@@ -74,7 +75,7 @@
                                         jQuery('#delete_i<?php echo json_decode($item->id);?>').css('color', '#428bca');
 
                                         $.ajax({
-                                            url: 'http://localhost/uni/teamproject/Favorites/delete/<?php echo json_encode($item->id); ?>',
+                                            url: host_server + '/Favorites/delete/<?php echo json_encode($item->id); ?>',
                                             type: 'POST',
                                             data: 'test',
                                             dataType: 'json',

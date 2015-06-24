@@ -13,7 +13,7 @@
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
 
-$cakeDescription = 'CakePHP: the rapid development php framework';
+$cakeDescription = 'Dashboard | ';
 ?>
 <!DOCTYPE html>
 <html>
@@ -54,7 +54,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
 <section id="container">
     <header class="header black-bg">
         <!-- TU Braunschweig logo start-->
-        <a href="https://www.tu-braunschweig.de/" class="logo"><img style="margin-left: -15px" alt="TU Braunschweig" src="http://localhost/uni/teamproject/img/siegel_rot.jpg"></a>
+        <a href="https://www.tu-braunschweig.de/" class="logo"><img style="margin-left: -15px" alt="TU Braunschweig" src="http://localhost/teamproject/img/siegel_rot.jpg"></a>
         <!--logo end-->
         <div class="nav notify-row" id="top_menu">
 
@@ -320,7 +320,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
             var search = jQuery('#app_text').val();
             console.log(search);
             $.ajax({
-                url: 'http://localhost/uni/teamproject/Users/app_filter/'+search,
+                url: 'http://localhost/teamproject/Users/app_filter/'+search,
                 type: 'POST',
                 data: search,
                 dataType: 'json',
