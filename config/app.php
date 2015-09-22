@@ -1,5 +1,5 @@
 <?php
-return [
+$config = [
     /**
      * Debug Level:
      *
@@ -218,10 +218,11 @@ return [
              * MySQL on MAMP uses port 8889, MAMP users will want to uncomment
              * the following line and set the port accordingly
              */
-            //'port' => 'nonstandard_port_number',
-            'username' => 'my_app',
-            'password' => 'secret',
-            'database' => 'my_app',
+
+            // 'port' => 'nonstandard_port_number',
+            // 'username' => 'my_app',
+            // 'password' => 'secret',
+            // 'database' => 'my_app',
             'encoding' => 'utf8',
             'timezone' => 'UTC',
             'cacheMetadata' => true,
@@ -324,3 +325,7 @@ return [
         'defaults' => 'php',
     ],
 ];
+
+include "datasource.php"; //define the right datasource via hostname
+
+return $config;
