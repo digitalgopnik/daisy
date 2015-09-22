@@ -12,7 +12,7 @@ A skeleton for creating applications with [CakePHP](http://cakephp.org) 3.0.
 ### Easy installation
 
 1. Clone
-2. Init Database
+2. Init Database (daisy_db.sql)
 3. Change config/datasource.php configurations to pass your Database
 4. Trigger composer_update.sh via terminal
 5. Set up your WebServer for this project
