@@ -1,0 +1,145 @@
+\documentclass[a4paper,11pt]{scrartcl}
+%\usepackage[latin1]{inputenc}
+\usepackage[final]{graphicx}
+\usepackage{ngerman}
+\usepackage[utf8]{inputenc}
+\usepackage[right]{eurosym}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{hyperref}
+\usepackage{newlfont}
+\usepackage{amssymb}
+\usepackage{ifsym}
+\usepackage{prettyref}
+\usepackage{pdfpages}
+
+\title{Daisy Lastenheft}
+\author{Max Hoffmann\\Christian Ratz}
+%\date{}                                           % Activate to display a given date or no date
+
+\begin{document}
+\maketitle
+
+%\table history
+%Version
+%Datum
+%Autor
+%Änderungsgrund / Bemerkungen
+
+\tableofcontents
+
+\newpage
+
+\begin{tabular}{|  p{0.1\textwidth} | p{0.15\textwidth} | p{0.15\textwidth} | p{0.5\textwidth} |} \hline
+	Version & Datum & Autor(en) & Titel \\ \hline
+	0.1	&	22.06.15	& Max & Erstellen der ersten Version. \\ \hline
+	0.2    &     03.08.15   & Christian & Erweiterung und Vervollst\"andigung. \\ \hline
+ \end{tabular}
+
+\section{Einleitung}
+
+\subsection{Allgemeines}
+
+\subsubsection{Zweck und Ziel dieses Dokuments}
+Dieses Lastenheft beschreibt das Erweitern einer Software f\"ur das Institut der Wirtschaftsinformatik an der TU Braunschweig.
+Ziel ist es, den Funktionsumfang einer web-basierten Applikation eines Touchbards zu vergr\"o\ss{}ern  sowie die Intuitivit\"at dieser zu steigern.
+
+\subsubsection{Projektbezug}
+Das bereits vorliegende Dashboard, welches in einem Teamprojekt entstanden ist, wird benutzt und erweitert.
+
+\subsubsection{Abkuerzungen}
+\begin{tabular}{| p{0.2\textwidth}| p{0.8\textwidth}|} \hline
+  Name & Erklaerung\\ \hline
+	Javascript & JavaScript (kurz JS) ist eine Skriptsprache, die urspr\"unglich f\"ur dynamisches HTML in Webbrowsern entwickelt wurde, um Benutzerinteraktionen auszuwerten, Inhalte w\"ahrend der Laufzeit zu ver\"andern, nachzuladen oder zu generieren und so die M\"oglichkeiten von HTML und CSS zu erweitern. \\ \hline
+  DIA & Dia ist ein Freies Tool (wurde f\"ur Linux entwickelt) zum erstellen von ER, UseCases und anderen UML. Es kann hier f\"ur alle Betriebssysteme heruntergeladen werden: \url{http://projects.gnome.org/dia/} \\ \hline
+  FreeMind & FreeMind ist ein freies Tool (wurde in Java entwickelt) zum Erstellen von Mind Maps. Es kann hier f\"ur alle Betriebssysteme heruntergeladen werden: \url{http://freemind.sourceforge.net/wiki/index.php/Main_Page}  \\ \hline
+  GanttProject & GanttProject ist ein Tool zum Erstellen von Gantt-Projekten (dies ist Netzplan \"ahnlich). Es kann hier f\"ur alle Betriebssysteme heruntergeladen werden: \url{http://www.ganttproject.biz/} \\ \hline
+ \end{tabular}
+
+\section{Konzept und Rahmenbedingungen}
+
+\subsection{Ziele und Nutzen des Anwenders}
+Die Nutzer k\"onnen Dateien von anderen Applikationen im Dashboard verwalten, speichern und laden.
+
+\subsection{Benutzer / Zielgruppe}
+Die Zielgruppe sind Lehrende, Vortragende und andere Benutzer des Touchboards.
+
+\subsection{Systemvoraussetzungen}
+Funktionsf\"ahiges Touchboard.
+
+\subsection{Ressourcen}
+Es wird ein Touchboard zur Verf\"ugung gestellt.
+
+\section{Beschreibung der Anforderungen}
+Hier werden alle Anforderungen Schritt f\"ur Schritt beschrieben.
+\newline \newline
+Eindeutige Namen: \newline
+XX-YY-ZZZZ
+\newline \newline
+\begin{tabular}{| p{0.2\textwidth} | p{0.8\textwidth}|}   \hline
+  XX $\rightarrow$ 		& LH=Lastenheft\\
+					  					&  PH= Pflichtenheft \\
+											\hline
+  YY$\rightarrow$ 		& DB=Datenbank \\
+  										& UI=User Inteface \\
+											& JS=Javascript\\
+											\hline
+  ZZZZ $\rightarrow$ 	& Die Nummer. \\
+  										\hline
+ \end{tabular}
+
+\subsection{Anforderung 1}%Erste entwicklungsstufe
+
+\begin{tabular}{| p{0.2\textwidth}| p{0.8\textwidth}|} \hline
+  Name & Erkl\"arung\\ \hline
+	LH-JS-0001	& Abfangen von Downloads von allen verwendeten Tools. Wenn eine vom Dashboard ge\"offnete Applikation eine Download-Anfrage sendet, wird dies mittels Javascript abgefangen.\\ \hline
+	LH-JS-0002	& Speichern der Daten (aufbauend auf LH-JS-0001).\\ \hline
+	LH-JS-0002	& Laden der gespeicherten Daten (aufbauend auf LH-JS-0002).\\ \hline
+	LH-JS-0003 	& Aufruf der Webseite im iFrame erfolgt ohne Blockierung dieser.\\
+	\hline
+ \end{tabular}
+
+
+%Tabelle:
+%Nr. / ID
+%BSP_07_01
+%Nichttechnischer Titel
+%Titel / Kurzbetreff
+%Quelle
+%Herkunft angeben
+%Verweise
+
+%Priorität
+
+%%\subsubsection{Beschreibung}
+%%Text%TODO:
+%%\subsubsection{Wechselwirkungen}
+%%Text%TODO:
+%%\subsubsection{Risiken}
+%%Text%TODO:
+%\subsubsection{Vergleich mit bestehenden L\"osungen}
+%%Keine L\"osung, die
+%%\subsubsection{Grobsch\"atzung des Aufwands}
+%%Geschätzter Aufwand beträgt 
+%\subsubsection{Abbildungen}
+
+
+
+%\subsection{Anforderung 2..n}
+
+
+\section{Anhang / Ressourcen}
+Noch keine Anhang Vorhanden.
+
+% Beispiel um ein Bild ein zu fügen. Tabellen werden ähnlich gespeichert.
+% Und mit \prettyref{img:MindMap} kann darauf referenziert werden im Text.
+%
+% \begin{figure}[hb]
+% 	\begin{center}
+%		 \label{img:MindMap} % Label zum Referenzieren
+%		 \includegraphics[width=1.2\textwidth]{gfx/SchachProgrammErstellen.pdf} \noindent
+%		 \caption{MindMap - Was wird benötigt, Was gibt es zu tun? (Reinzoomen! dies ist eine Vektorgraphik.} % Bildunterschrift
+%	 \end{center}
+% \end{figure}
+
+\end{document}

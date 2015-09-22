@@ -13,7 +13,7 @@
 
                 <a href="<?php echo $host_server; ?>/App/<?php echo $item->url; ?>">
                     <?php
-                    $url = "http://localhost".$this->request->base.$item->image_url;
+                    $url = $this->request->base.$item->image_url;
                     $background_variable = "background-image: url($url);";
                     ?>
                     <div id="blog-bg" style="<?php echo $background_variable; ?>">
