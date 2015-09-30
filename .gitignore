@@ -3,3 +3,4 @@
 /vendor/*
 /bin/*
 todo.txt
+node_modules
