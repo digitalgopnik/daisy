@@ -40,7 +40,9 @@
   * url=der Link
   * return: daisy-url
 
+
 ### Gruppen
+Forerst nicht notwendig.
 * getMyGroups():
   * return: alle meine Gruppen in Array
 * createGroup(name): erstellt gruppe mit gruppen name
