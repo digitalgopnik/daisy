@@ -11,7 +11,8 @@
         <div class="col-lg-3 col-md-3 col-sm-3 mb">
             <div class="content-panel pn">
 
-                <a href="<?php echo $host_server; ?>/App/<?php echo $item->url; ?>">
+                <!-- <a href="?php echo $host_server; ?>/App/?php echo $item->url; ?>"> -->
+                <a href="<?php echo $item->url; ?>" target="_blank">
                     <?php
 
                     $url = $this->request->base.$item->image_url;
