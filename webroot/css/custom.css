@@ -26,3 +26,7 @@ div.message.success {
     opacity: 0.8;
     z-index: 9999;
 }
+
+.hide {
+  display: none;
+}
