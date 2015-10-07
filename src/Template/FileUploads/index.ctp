@@ -44,9 +44,8 @@ foreach ($groups as $group) {
                 <td><?= $file_upload->created->i18nFormat('dd.MM.YYYY HH:mm') ?></td>
                 <td><?= $file_upload->modified->i18nFormat('dd.MM.YYYY HH:mm') ?></td>
                 <td class="actions">
-                    <?php $edit_class = $this->Html->tag('i', '', ['class' => 'fa fa-pencil', 'escape' => false]); ?>
                     <?php $delete_class = $this->Html->tag('i', '', ['class' => 'fa fa-trash-o', 'escape' => false]); ?>
-                    <?= $this->Html->link($edit_class . ' Bearbeiten', ['action' => 'edit', $file_upload->id], ['class' => 'btn btn-danger', 'escape' => false]) ?>
+                    <a href="#share_modal" data-toggle="modal" class="btn btn-danger" data-url="/FileUploads/share/<?php echo $file_upload->id;?>"><i class="fa fa-share-alt"></i>&nbsp;Freigeben</a>
                     <?= $this->Form->postLink($delete_class . ' Löschen', ['action' => 'delete', $file_upload->id], ['class' => 'btn btn-danger', 'escape' => false], ['confirm' => __('Bist du sicher?')]) ?>
                 </td>
             </tr>
@@ -103,7 +102,7 @@ foreach ($groups as $group) {
                 <?php endforeach; ?>
                 </tbody>
             </table>
-        </div>
+        </div>#
     </div>
 </div>
 
@@ -113,4 +112,59 @@ foreach ($groups as $group) {
         $('#own_uploads').DataTable();
         $('#group_uploads').DataTable();
     } );
+</script>
+
+
+<div id="share_modal" style="z-index: 9999" class="modal fade bs-kategorie-modal-lg" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content" style="border: none !important; background-color: #fff">
+            <div class="col-lg-9 col-md-9 col-xs-9" style="background-color: #fff; margin-top: 30%; height: 180px">
+                <?= $this->Form->hidden('user_id') ?>
+                <?= $this->Form->hidden('group_id') ?>
+                <br>
+                <legend><?= __('Datei freigeben') ?></legend>
+                <div class="row">
+                    <div class="col-xs-3">
+                        <label for="group">Gruppe auswählen (gegebenfalls)</label>
+                    </div>
+                    <div class="col-xs-9">
+                        <?php
+                        echo $this->Form->select('group_id', $groups_array, ['label' => false, 'id' => 'group', 'class' => 'form-control', 'empty' => 'Gruppe auswählen']);
+                        ?>
+                    </div>
+                </div>
+                <br>
+
+                <?php $i_class_submit = $this->Html->tag('i', '', ['class' => 'fa fa-plus', 'escape' => false]); ?>
+                <?= $this->Form->button($i_class_submit . ' Freigeben', ['class' => 'btn btn-danger datei_freigeben']) ?>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script type="text/javascript">
+    jQuery('.datei_freigeben').on('click', function() {
+        var data_url = jQuery(this).attr('data-url');
+        // TODO: Modal schließen
+        var group = jQuery('select#group').val();
+        var post_data = {
+            group_id: group
+        };
+        $.ajax({
+            url: data_url,
+            type: 'POST',
+            data: post_data,
+            dataType: 'json',
+            async: true,
+            cache: false
+        })
+            .always(function(data) {
+                if (data['status']!=='failed') {
+                    // TODO: reload
+                } else {
+                    // TODO: Fehlermeldung einblenden
+                }
+            });
+    });
 </script>

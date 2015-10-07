@@ -139,6 +139,47 @@ class FileUploadsController extends AppController
     }
 
     /**
+     * Share method
+     *
+     */
+    public function share($id = null) {
+        $file_upload = $this->FileUploads->get($id);
+
+        $file = WWW_ROOT.$file_upload->src;
+
+        $group_id = $this->request->data['group_id'];
+
+        $group_folder = $this->Groups->get($group_id);
+        $destination = $group_folder->folder_path . "/" . $file['name'];
+
+        $new_file_upload = [
+            'user_id' => $this->request->session()->read('user_id'),
+            'group_id' => $group_id,
+            'src' => $destination,
+            'filename' => $file['name'],
+            'type' => $file['type']
+        ];
+        $file_upload = $this->FileUploads->patchEntity($file_upload, $new_file_upload);
+        $file_upload_save = $this->FileUploads->save($file_upload);
+        if ($file_upload_save) {
+            $destination_path = WWW_ROOT.$destination;
+            move_uploaded_file($file['tmp_name'], $destination_path);
+            $response = ['status' => 'success'];
+        } else {
+            $response = ['status' => 'failed'];
+        }
+
+        $this->set('response', $response);
+
+        $this->render('response');
+
+        return;
+
+
+
+    }
+
+    /**
      * Delete method
      *
      * @param string|null $id File Upload id.
