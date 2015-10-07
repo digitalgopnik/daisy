@@ -30,12 +30,12 @@
 ## Schnittstelle
 
 ### Datei
-* uploadFile(appname,url,data): Datei upload, rückgabe (daisy-url)
+* uploadFile(dateiname,appname,url,data): Datei upload, rückgabe (daisy-url)
   * appname (z.B. Visio)
   * url=der link zur Datei
   * data (Inhalt der Datei)
   * return: daisy-url
-* uploadLink(url): Link Upload, rückgabe (daisy-url) - Kann auch einfach nur ein link auf eine Datei sein!
+* uploadLink(dateiname,appname,url): Link Upload, rückgabe (daisy-url) - Kann auch einfach nur ein link auf eine Datei sein!
   * appname
   * url=der Link
   * return: daisy-url
