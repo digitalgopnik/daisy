@@ -24,6 +24,15 @@ $cakeDescription = 'Dashboard | ';
         <?= $cakeDescription ?>:
         <?= $this->fetch('title') ?>
     </title>
+    <script>
+      //Change Module for electron nodeintegration
+      //  * If module is not deletet, jquery thinks that this is a node app.
+      //  * new name:= window.mod
+      if (typeof module !== 'undefined') {
+        window.mod = module;
+        delete module;
+      }
+    </script>
     <?= $this->Html->meta('icon') ?>
 
     <?= $this->Html->css('bootstrap.css') ?>
