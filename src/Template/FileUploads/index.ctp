@@ -102,7 +102,7 @@ foreach ($groups as $group) {
                 <?php endforeach; ?>
                 </tbody>
             </table>
-        </div>#
+        </div>
     </div>
 </div>
 
