@@ -29,13 +29,8 @@
 ## Schnittstelle
 
 ### Datei
-* uploadFileFromDashboard(appname,data,filename)
-  * Dies ist für MS Office Dateien
+* uploadFile(appname,url): Datei upload, rückgabe (daisy-url)
   * appname (z.B. Visio)
-  * data: Die daten (hoffentlich funktioniert das so)
-  * der Datei name
-  * Nach Upload kann die Gruppe zugeteilt werden (TODO: Wie genau?)
-* uploadFile(appname,url,gruppen_id=null): Datei upload, rückgabe (daisy-url)
   * url=der link zur Datei
   * gruppen_id kann null sein und gibt ggf. eine gruppe an in der die Datei hinzugefügt wird.
   * return: daisy-url
