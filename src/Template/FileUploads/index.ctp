@@ -32,7 +32,7 @@ foreach ($groups as $group) {
         <th class="actions"><?= __('Aktionen') ?></th>
         </thead>
         <tbody>
-        <?php foreach ($file_uploads as $file_upload): ?>
+        <?php if ($file_uploads) { foreach ($file_uploads as $file_upload) { ?>
             <tr>
                 <td><?= $this->Number->format($file_upload->id) ?></td>
                 <td><?php
@@ -50,7 +50,7 @@ foreach ($groups as $group) {
                 </td>
             </tr>
 
-        <?php endforeach; ?>
+        <?php } } ?>
         </tbody>
     </table>
     </div>
@@ -79,7 +79,7 @@ foreach ($groups as $group) {
                 <th class="actions"><?= __('Aktionen') ?></th>
                 </thead>
                 <tbody>
-                <?php foreach ($group_uploads as $group_upload): ?>
+                <?php if($group_uploads) { foreach ($group_uploads as $group_upload) { ?>
                     <tr>
                         <td><?= $this->Number->format($group_upload->id) ?></td>
                         <td><?php
@@ -89,8 +89,10 @@ foreach ($groups as $group) {
                             ?></td>
                         <td><?= h($group_upload->filename) ?></td>
                         <td><?= $groups_array[$group_upload->group_id] ?></td>
-                        <td><?= $file_upload->created->i18nFormat('dd.MM.YYYY HH:mm') ?></td>
-                        <td><?= $file_upload->modified->i18nFormat('dd.MM.YYYY HH:mm') ?></td>
+                        <td><?= $group_upload->created->i18nFormat('dd.MM.YYYY HH:mm')
+                        ?></td>
+                        <td><?= $group_upload->modified->i18nFormat('dd.MM.YYYY HH:mm')
+                         ?></td>
                         <td class="actions">
                             <?php $edit_class = $this->Html->tag('i', '', ['class' => 'fa fa-pencil', 'escape' => false]); ?>
                             <?php $delete_class = $this->Html->tag('i', '', ['class' => 'fa fa-trash-o', 'escape' => false]); ?>
@@ -99,7 +101,7 @@ foreach ($groups as $group) {
                         </td>
                     </tr>
 
-                <?php endforeach; ?>
+                <?php }} ?>
                 </tbody>
             </table>
         </div>

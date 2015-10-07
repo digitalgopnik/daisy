@@ -27,6 +27,7 @@ class FileUploadsController extends AppController
 
         $this->set('group_uploads', $this->paginate($this->FileUploads->find()->where(['group_id IN' => $groups])));
         $this->set('file_uploads', $this->paginate($this->FileUploads->find()->where(['user_id' => $this->request->session()->read('user_id')])));
+
         $this->set('_serialize', ['file_uploads']);
 
         // TODO: Gruppenuploads holen
