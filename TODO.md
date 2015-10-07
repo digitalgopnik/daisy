@@ -24,21 +24,25 @@
 * Es soll einen Link für die Datei geben
   * Pro App verschiedene Aktion
   * Natürlich für die Link Datei, den entsprechenden Link
+* Gruppen können hinzugefügt und geändert werden.
 
 
 ## Schnittstelle
 
 ### Datei
-* uploadFile(appname,url): Datei upload, rückgabe (daisy-url)
+* uploadFile(dateiname,appname,url,data): Datei upload, rückgabe (daisy-url)
   * appname (z.B. Visio)
   * url=der link zur Datei
-  * gruppen_id kann null sein und gibt ggf. eine gruppe an in der die Datei hinzugefügt wird.
+  * data (Inhalt der Datei)
   * return: daisy-url
-* uploadLink(url): Link Upload, rückgabe (daisy-url) - Kann auch einfach nur ein link auf eine Datei sein!
+* uploadLink(dateiname,appname,url): Link Upload, rückgabe (daisy-url) - Kann auch einfach nur ein link auf eine Datei sein!
+  * appname
   * url=der Link
   * return: daisy-url
 
+
 ### Gruppen
+Forerst nicht notwendig.
 * getMyGroups():
   * return: alle meine Gruppen in Array
 * createGroup(name): erstellt gruppe mit gruppen name
