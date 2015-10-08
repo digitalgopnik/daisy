@@ -149,21 +149,19 @@ class FileUploadsController extends AppController
 
         $group_id = $this->request->data['group_id'];
 
-        $group_folder = $this->Groups->get($group_id);
-        $destination = $group_folder->folder_path . "/" . $file['name'];
-
         $new_file_upload = [
             'user_id' => $this->request->session()->read('user_id'),
             'group_id' => $group_id,
-            'src' => $destination,
-            'filename' => $file['name'],
-            'type' => $file['type']
+            'app_name' => $file->app_name,
+            'url' => $file->url,
+            'src' => 'db',
+            'filename' => $file->filename,
+            'data' => $file->data,
+            'type' => $file->type
         ];
         $file_upload = $this->FileUploads->patchEntity($file_upload, $new_file_upload);
         $file_upload_save = $this->FileUploads->save($file_upload);
         if ($file_upload_save) {
-            $destination_path = WWW_ROOT.$destination;
-            move_uploaded_file($file['tmp_name'], $destination_path);
             $response = ['status' => 'success'];
         } else {
             $response = ['status' => 'failed'];
@@ -174,9 +172,7 @@ class FileUploadsController extends AppController
         $this->render('response');
 
         return;
-
-
-
+        
     }
 
     /**
