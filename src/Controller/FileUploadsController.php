@@ -145,7 +145,7 @@ class FileUploadsController extends AppController
     public function share($id = null) {
         $file_upload = $this->FileUploads->get($id);
 
-        $file = WWW_ROOT.$file_upload->src;
+        $file = $file_upload;
 
         $group_id = $this->request->data['group_id'];
 
@@ -176,9 +176,9 @@ class FileUploadsController extends AppController
             'app_name' => $app_name,
             'url' => $url,
             'src' => 'db',
-            'filename' => $file->filename,
-            'data' => $file->data,
-            'type' => $file->type
+            'filename' => $filename,
+            'data' => $data,
+            'type' => $type
         ];
         $file_upload = $this->FileUploads->patchEntity($file_upload, $new_file_upload);
         $file_upload_save = $this->FileUploads->save($file_upload);
