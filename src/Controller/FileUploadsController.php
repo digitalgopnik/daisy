@@ -151,11 +151,23 @@ class FileUploadsController extends AppController
 
         $app_name = "";
         $url = "";
+        $filename = "";
+        $data = "";
+        $type = "";
         if (isset($file->app_name)) {
             $app_name = $file->app_name;
         }
         if (isset($file->url)) {
             $url = $file->url;
+        }
+        if (isset($file->filename)) {
+            $filename = $file->filename;
+        }
+        if (isset($file->data)) {
+            $data = $file->data;
+        }
+        if (isset($file->type)) {
+            $type = $file->type;
         }
 
         $new_file_upload = [
