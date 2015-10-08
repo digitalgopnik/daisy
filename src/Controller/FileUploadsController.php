@@ -98,6 +98,7 @@ class FileUploadsController extends AppController
         $this->loadModel('Users');
         $file_upload = $this->FileUploads->newEntity();
         if ($this->request->is(['post', 'put', 'ajax'])) {
+
             if (!$appname) {
                 $appname = $this->request->data['appname'];
             }
@@ -108,23 +109,20 @@ class FileUploadsController extends AppController
                 $data = $this->request->data['data'];
             }
 
-            $user_folder = $this->Users->get($this->request->session()->read('user_id'));
-            $destination = $user_folder->user_path . "/" . $data['name'];
-
             $new_file_upload = [
                 'user_id' => $this->request->session()->read('user_id'),
                 'group_id' => '',
                 'app_name' => $appname,
                 'url' => $url,
-                'src' => $destination,
+                'src' => 'db',
+                'data' => $data['data'],
                 'filename' => $data['name'],
                 'type' => $data['type']
             ];
             $file_upload = $this->FileUploads->patchEntity($file_upload, $new_file_upload);
             $file_upload_save = $this->FileUploads->save($file_upload);
+
             if ($file_upload_save) {
-                $destination_path = WWW_ROOT.$destination;
-                move_uploaded_file($data['tmp_name'], $destination_path);
                 $response = ['status' => 'success', 'appname' => $appname, 'url' => $url];
             } else {
                 $response = ['status' => 'failed'];

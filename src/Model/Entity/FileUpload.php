@@ -16,7 +16,10 @@ class FileUpload extends Entity
      */
     protected $_accessible = [
         'user_id' => true,
+        'app_name' => true,
+        'url' => true,
         'group_id' => true,
+        'data' => true,
         'src' => true,
         'filename' => true,
         'type' => true,
