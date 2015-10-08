@@ -149,6 +149,8 @@ class FileUploadsController extends AppController
 
         $group_id = $this->request->data['group_id'];
 
+        $app_name = "";
+        $url = "";
         if (isset($file->app_name)) {
             $app_name = $file->app_name;
         }
