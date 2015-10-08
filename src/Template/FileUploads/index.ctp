@@ -83,8 +83,8 @@ foreach ($groups as $group) {
                     <tr>
                         <td><?= $this->Number->format($group_upload->id) ?></td>
                         <td><?php
-                            if (isset($file_upload->app_name) && strlen($file_upload->app_name)>0) {
-                                echo h($file_upload->app_name);
+                            if (isset($group_upload->app_name) && strlen($group_upload->app_name)>0) {
+                                echo h($group_upload->app_name);
                             }
                             ?></td>
                         <td><?= h($group_upload->filename) ?></td>
