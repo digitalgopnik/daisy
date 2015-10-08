@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.6.25)
 # Datenbank: daisy
-# Erstellt am: 2015-10-07 08:24:12 +0000
+# Erstellt am: 2015-10-08 08:38:12 +0000
 # ************************************************************
 
 
@@ -80,27 +80,32 @@ CREATE TABLE `file_uploads` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) DEFAULT NULL,
   `group_id` int(11) DEFAULT NULL,
+  `app_name` varchar(128) DEFAULT NULL,
+  `url` varchar(256) DEFAULT NULL,
   `src` varchar(256) NOT NULL,
   `filename` varchar(32) NOT NULL,
   `type` varchar(64) NOT NULL,
   `created` datetime NOT NULL,
   `modified` datetime NOT NULL,
+  `data` blob,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 LOCK TABLES `file_uploads` WRITE;
 /*!40000 ALTER TABLE `file_uploads` DISABLE KEYS */;
 
-INSERT INTO `file_uploads` (`id`, `user_id`, `group_id`, `src`, `filename`, `type`, `created`, `modified`)
+INSERT INTO `file_uploads` (`id`, `user_id`, `group_id`, `app_name`, `url`, `src`, `filename`, `type`, `created`, `modified`, `data`)
 VALUES
-	(1,1,NULL,'files/d549a310a5edad7a0e0d79320fe305a6/currynudelns.jpg','currynudelns.jpg','image/jpeg','2015-06-04 11:11:18','2015-06-04 11:11:18'),
-	(2,1,NULL,'files/d549a310a5edad7a0e0d79320fe305a6/currynudelns.jpg','currynudelns.jpg','image/jpeg','2015-06-04 11:11:33','2015-06-04 11:11:33'),
-	(3,1,NULL,'files/d549a310a5edad7a0e0d79320fe305a6/currynudelns.jpg','currynudelns.jpg','image/jpeg','2015-06-04 11:11:49','2015-06-04 11:11:49'),
-	(4,1,NULL,'files/d549a310a5edad7a0e0d79320fe305a6/currynudelns.jpg','currynudelns.jpg','image/jpeg','2015-06-04 11:12:01','2015-06-04 11:12:01'),
-	(5,1,1,'files/a52428c46b02b4746d1f056d884306dd/Index.html','Index.html','text/html','2015-06-04 11:16:16','2015-06-04 11:16:16'),
-	(6,1,1,'files/a52428c46b02b4746d1f056d884306dd/currynudelns.jpg','currynudelns.jpg','image/jpeg','2015-06-04 11:17:16','2015-06-04 11:17:16'),
-	(7,1,2,'files/7b6c914beb712fb747237d56f51ddcb6/schema_energieheld_cms_new.mwb','schema_energieheld_cms_new.mwb','application/octet-stream','2015-06-04 11:20:30','2015-06-04 11:20:30'),
-	(8,1,3,'files/a4c01cf2c60b0eaef2174367ad222bf5/welcome.html','welcome.html','text/html','2015-06-04 11:24:39','2015-06-04 11:24:39');
+	(1,2,NULL,NULL,NULL,'files/d549a310a5edad7a0e0d79320fe305a6/currynudelns.jpg','currynudelns.jpg','image/jpeg','2015-06-04 11:11:18','2015-06-04 11:11:18',NULL),
+	(2,2,NULL,NULL,NULL,'files/d549a310a5edad7a0e0d79320fe305a6/currynudelns.jpg','currynudelns.jpg','image/jpeg','2015-06-04 11:11:33','2015-06-04 11:11:33',NULL),
+	(3,2,NULL,NULL,NULL,'files/d549a310a5edad7a0e0d79320fe305a6/currynudelns.jpg','currynudelns.jpg','image/jpeg','2015-06-04 11:11:49','2015-06-04 11:11:49',NULL),
+	(4,2,NULL,NULL,NULL,'files/d549a310a5edad7a0e0d79320fe305a6/currynudelns.jpg','currynudelns.jpg','image/jpeg','2015-06-04 11:12:01','2015-06-04 11:12:01',NULL),
+	(5,2,1,NULL,NULL,'files/a52428c46b02b4746d1f056d884306dd/Index.html','Index.html','text/html','2015-06-04 11:16:16','2015-06-04 11:16:16',NULL),
+	(6,2,1,NULL,NULL,'files/a52428c46b02b4746d1f056d884306dd/currynudelns.jpg','currynudelns.jpg','image/jpeg','2015-06-04 11:17:16','2015-06-04 11:17:16',NULL),
+	(7,2,2,NULL,NULL,'files/7b6c914beb712fb747237d56f51ddcb6/schema_energieheld_cms_new.mwb','schema_energieheld_cms_new.mwb','application/octet-stream','2015-06-04 11:20:30','2015-06-04 11:20:30',NULL),
+	(8,2,3,NULL,NULL,'files/a4c01cf2c60b0eaef2174367ad222bf5/welcome.html','welcome.html','text/html','2015-06-04 11:24:39','2015-06-04 11:24:39',NULL),
+	(9,2,NULL,NULL,NULL,'files/e9f444a4f4e77e40f11db44b1caa2273/D','D','D','2015-10-08 08:18:05','2015-10-08 08:18:05',NULL),
+	(10,2,NULL,'GeileApp','http://www.geileapp.de','db','dateiname','type','2015-10-08 08:35:23','2015-10-08 08:35:23',X'4441544121');
 
 /*!40000 ALTER TABLE `file_uploads` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -181,8 +186,8 @@ INSERT INTO `items` (`id`, `name`, `auth_key`, `auth_token`, `url`, `image_url`,
 VALUES
 	(4,'Creately','-','-','http://creately.com','/img/tools/creately.png','<h2>Creately.com</h2>\n              <ul>\n                <li>Diagramm- und Design-Software</li>\n                <li>Mindmaps, Gantt-Charts, Flowcharts</li>\n              </ul>',NULL,0),
 	(5,'Marvel App','-','-','http://marvelapp.com','/img/tools/marvelapp.jpg','<h2>Marvelapp.com</h2>\n              <ul>\n                <li>Website-Prototyp</li>\n                <li>Lade deine Prototypen hoch, und bearbeite sie</li>\n              </ul>',NULL,0),
-	(6,'Weebly','-','-','http://weebly.com','/img/tools/weebly2.jpg','<h2>Weebly.com</h2>\n              <ul>\n                <li>Erstellen einer Website</li>\n                <li>Verschiedene Kategorien und Designer wählbar</li>\n              </ul>',NULL,0),
-	(7,'Presenter ProWise','-','-','http://www.prowise.com/presenter/start','/img/tools/prowise.jpg','<h2>ProWise Presenter</h2>\n              <ul>\n                <li>Scratchbook für Notizen, Ideensammlungen</li>\n                <li>Schnelles bearbeiten von Fotos und Grafiken</li>\n              </ul>',NULL,0),
+	(6,'Weebly','-','-','http://weebly.com','/img/tools/weebly2.jpg','<h2>Weebly.com</h2>\n              <ul>\n                <li>Erstellen einer Website</li>\n                <li>Verschiedene Kategorien und Designer w?hlbar</li>\n              </ul>',NULL,0),
+	(7,'Presenter ProWise','-','-','http://www.prowise.com/presenter/start','/img/tools/prowise.jpg','<h2>ProWise Presenter</h2>\n              <ul>\n                <li>Scratchbook f?r Notizen, Ideensammlungen</li>\n                <li>Schnelles bearbeiten von Fotos und Grafiken</li>\n              </ul>',NULL,0),
 	(8,'Lynda','-','-','http://lynda.com','/img/tools/lynda.jpg','<h2>Lynda.com</h2>\n              <ul>\n                <li>Bildungsseite</li>\n                <li>Bietet zu verschiedenen Themengebieten Kurse und Tutorials an.</li>\n              </ul>',NULL,0),
 	(9,'Wikipedia',NULL,NULL,'http://de.wikipedia.org/wiki/Wikipedia:Hauptseite','/img/tools/wikipedia.jpg','<h2>Wikipedia</h2>',NULL,0),
 	(10,'Taschenrechner',NULL,NULL,'calc:','/img/tools/calc.png','<h2>Windows Taschenrechner</h2>               <ul>                 <li>Taschenrechner Funktion</li>               </ul>',NULL,1),
@@ -299,14 +304,14 @@ VALUES
 	(1,'Bildbearbeitung'),
 	(2,'Notizen'),
 	(3,'Videos'),
-	(4,'Kreativitätstechniken'),
+	(4,'Kreativit?tstechniken'),
 	(5,'Tutorials'),
 	(6,'Webdesign'),
 	(7,'Prototyping'),
 	(8,'Videokonferenzen'),
 	(9,'Wissen'),
 	(10,'Mathematische Probleme'),
-	(11,'Präsentationen'),
+	(11,'Pr?sentationen'),
 	(12,'Zeichnen / malen'),
 	(13,'Mindmaps'),
 	(14,'Diagramme');
