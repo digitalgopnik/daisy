@@ -45,7 +45,7 @@ foreach ($groups as $group) {
                 <td><?= $file_upload->modified->i18nFormat('dd.MM.YYYY HH:mm') ?></td>
                 <td class="actions">
                     <?php $delete_class = $this->Html->tag('i', '', ['class' => 'fa fa-trash-o', 'escape' => false]); ?>
-                    <a href="#share_modal" data-toggle="modal" class="btn btn-danger" data-url="/FileUploads/share/<?php echo $file_upload->id;?>"><i class="fa fa-share-alt"></i>&nbsp;Freigeben</a>
+                    <a href="#share_modal" data-toggle="modal" class="btn btn-danger freigeben_druecken" data-url="/FileUploads/share/<?php echo $file_upload->id;?>"><i class="fa fa-share-alt"></i>&nbsp;Freigeben</a>
                     <?= $this->Form->postLink($delete_class . ' Löschen', ['action' => 'delete', $file_upload->id], ['class' => 'btn btn-danger', 'escape' => false], ['confirm' => __('Bist du sicher?')]) ?>
                 </td>
             </tr>
@@ -146,27 +146,29 @@ foreach ($groups as $group) {
 </div>
 
 <script type="text/javascript">
-    jQuery('.datei_freigeben').on('click', function() {
+    jQuery('.freigeben_druecken').on('click', function() {
         var data_url = jQuery(this).attr('data-url');
-        // TODO: Modal schließen
-        var group = jQuery('select#group').val();
-        var post_data = {
-            group_id: group
-        };
-        $.ajax({
-            url: data_url,
-            type: 'POST',
-            data: post_data,
-            dataType: 'json',
-            async: true,
-            cache: false
-        })
-            .always(function(data) {
-                if (data['status']!=='failed') {
-                    // TODO: reload
-                } else {
-                    // TODO: Fehlermeldung einblenden
-                }
-            });
+        jQuery('.datei_freigeben').on('click', function () {
+            // TODO: Modal schließen
+            var group = jQuery('select#group').val();
+            var post_data = {
+                group_id: group
+            };
+            $.ajax({
+                url: data_url,
+                type: 'POST',
+                data: post_data,
+                dataType: 'json',
+                async: true,
+                cache: false
+            })
+                .always(function (data) {
+                    if (data['status'] !== 'failed') {
+                        // TODO: reload
+                    } else {
+                        // TODO: Fehlermeldung einblenden
+                    }
+                });
+        });
     });
 </script>
