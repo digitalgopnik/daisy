@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.6.25)
 # Datenbank: daisy
-# Erstellt am: 2015-10-08 08:38:12 +0000
+# Erstellt am: 2015-10-11 16:58:04 +0000
 # ************************************************************
 
 
@@ -102,10 +102,9 @@ VALUES
 	(4,2,NULL,NULL,NULL,'files/d549a310a5edad7a0e0d79320fe305a6/currynudelns.jpg','currynudelns.jpg','image/jpeg','2015-06-04 11:12:01','2015-06-04 11:12:01',NULL),
 	(5,2,1,NULL,NULL,'files/a52428c46b02b4746d1f056d884306dd/Index.html','Index.html','text/html','2015-06-04 11:16:16','2015-06-04 11:16:16',NULL),
 	(6,2,1,NULL,NULL,'files/a52428c46b02b4746d1f056d884306dd/currynudelns.jpg','currynudelns.jpg','image/jpeg','2015-06-04 11:17:16','2015-06-04 11:17:16',NULL),
-	(7,2,2,NULL,NULL,'files/7b6c914beb712fb747237d56f51ddcb6/schema_energieheld_cms_new.mwb','schema_energieheld_cms_new.mwb','application/octet-stream','2015-06-04 11:20:30','2015-06-04 11:20:30',NULL),
+	(7,2,1,'','','db','schema_energieheld_cms_new.mwb','application/octet-stream','2015-06-04 11:20:30','2015-10-08 08:58:54',''),
 	(8,2,3,NULL,NULL,'files/a4c01cf2c60b0eaef2174367ad222bf5/welcome.html','welcome.html','text/html','2015-06-04 11:24:39','2015-06-04 11:24:39',NULL),
-	(9,2,NULL,NULL,NULL,'files/e9f444a4f4e77e40f11db44b1caa2273/D','D','D','2015-10-08 08:18:05','2015-10-08 08:18:05',NULL),
-	(10,2,NULL,'GeileApp','http://www.geileapp.de','db','dateiname','type','2015-10-08 08:35:23','2015-10-08 08:35:23',X'4441544121');
+	(9,2,NULL,NULL,NULL,'files/e9f444a4f4e77e40f11db44b1caa2273/D','D','D','2015-10-08 08:18:05','2015-10-08 08:18:05',NULL);
 
 /*!40000 ALTER TABLE `file_uploads` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -184,11 +183,10 @@ LOCK TABLES `items` WRITE;
 
 INSERT INTO `items` (`id`, `name`, `auth_key`, `auth_token`, `url`, `image_url`, `help_text`, `app_help`, `offline`)
 VALUES
-	(4,'Creately','-','-','http://creately.com','/img/tools/creately.png','<h2>Creately.com</h2>\n              <ul>\n                <li>Diagramm- und Design-Software</li>\n                <li>Mindmaps, Gantt-Charts, Flowcharts</li>\n              </ul>',NULL,0),
+	(1,'Sumo Paint',NULL,NULL,'https://www.sumopaint.com/home/','/img/tools/not_there.jps','<h2>Sumo Paint</h2>\n              <ul>\n                <li>Zeichnen</li>\n              </ul>',NULL,0),
+	(2,'Strut IO',NULL,NULL,'strut/','/img/tools/not_there.jps','<h2>Strut IO</h2>\n              <ul>\n                <li>Präsentation erstellen</li>\n                <li>3D</li>\n                <li>CSS</li>\n              </ul>',NULL,0),
 	(5,'Marvel App','-','-','http://marvelapp.com','/img/tools/marvelapp.jpg','<h2>Marvelapp.com</h2>\n              <ul>\n                <li>Website-Prototyp</li>\n                <li>Lade deine Prototypen hoch, und bearbeite sie</li>\n              </ul>',NULL,0),
-	(6,'Weebly','-','-','http://weebly.com','/img/tools/weebly2.jpg','<h2>Weebly.com</h2>\n              <ul>\n                <li>Erstellen einer Website</li>\n                <li>Verschiedene Kategorien und Designer w?hlbar</li>\n              </ul>',NULL,0),
 	(7,'Presenter ProWise','-','-','http://www.prowise.com/presenter/start','/img/tools/prowise.jpg','<h2>ProWise Presenter</h2>\n              <ul>\n                <li>Scratchbook f?r Notizen, Ideensammlungen</li>\n                <li>Schnelles bearbeiten von Fotos und Grafiken</li>\n              </ul>',NULL,0),
-	(8,'Lynda','-','-','http://lynda.com','/img/tools/lynda.jpg','<h2>Lynda.com</h2>\n              <ul>\n                <li>Bildungsseite</li>\n                <li>Bietet zu verschiedenen Themengebieten Kurse und Tutorials an.</li>\n              </ul>',NULL,0),
 	(9,'Wikipedia',NULL,NULL,'http://de.wikipedia.org/wiki/Wikipedia:Hauptseite','/img/tools/wikipedia.jpg','<h2>Wikipedia</h2>',NULL,0),
 	(10,'Taschenrechner',NULL,NULL,'calc:','/img/tools/calc.png','<h2>Windows Taschenrechner</h2>               <ul>                 <li>Taschenrechner Funktion</li>               </ul>',NULL,1),
 	(11,'Wolfram Alpha',NULL,NULL,'http://wolframalpha.com','/img/tools/wolframalpha.jpg','<h2>WolframAlpha</h2>               <ul>                 <li>Rechen- und Wissensanwendung</li>                 <li>Loest mathematische Probleme.</li>               </ul>',NULL,0),
