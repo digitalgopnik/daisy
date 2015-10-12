@@ -46,7 +46,7 @@ class FileUploadsController extends AppController
         $this->viewBuilder()->layout('ajax');
         $file_upload = $this->FileUploads->find()->where(['FileUploads.app_name' => $app_name, 'FileUploads.filename' => $file_name])->first();
 
-        echo $file_upload;
+        echo $file_upload->data;
         return;
     }
 
