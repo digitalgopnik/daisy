@@ -1,5 +1,6 @@
 <script type="text/javascript" src="https://cdn.datatables.net/1.10.9/js/jquery.dataTables.min.js"></script>
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.9/css/dataTables.bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.9/css/jquery.dataTables.css">
 
 <br>
 <div class="col-lg-3 col-md-3 col-xs-3">
@@ -22,7 +23,7 @@ foreach ($groups as $group) {
             <h2>Meine Dateien</h2>
         </div>
         <div class="panel-body">
-        <table id="own_uploads" class="table table-striped table-bordered dataTable no-footer" cellpadding="0" cellspacing="0">
+        <table id="own_uploads" class="display" cellspacing="0" width="100%">
         <thead>
         <th>#</th>
         <th>App</th>
@@ -44,6 +45,7 @@ foreach ($groups as $group) {
                 <td><?= $file_upload->created->i18nFormat('dd.MM.YYYY HH:mm') ?></td>
                 <td><?= $file_upload->modified->i18nFormat('dd.MM.YYYY HH:mm') ?></td>
                 <td class="actions">
+                    <a href="/<?php echo $file_upload->app_name;?>/<?php echo $file_upload->filename; ?>" target="_blank" title="<?php echo $file_upload->filename;?> öffnen" class="btn btn-danger"><i class="fa fa-search"></i></a>
                     <?php $delete_class = $this->Html->tag('i', '', ['class' => 'fa fa-trash-o', 'escape' => false]); ?>
                     <a href="#share_modal" data-toggle="modal" class="btn btn-danger freigeben_druecken" data-url="/FileUploads/share/<?php echo $file_upload->id;?>"><i class="fa fa-share-alt"></i>&nbsp;Freigeben</a>
                     <?= $this->Form->postLink($delete_class . ' Löschen', ['action' => 'delete', $file_upload->id], ['class' => 'btn btn-danger', 'escape' => false], ['confirm' => __('Bist du sicher?')]) ?>
@@ -68,7 +70,7 @@ foreach ($groups as $group) {
             <h2>Gruppen-Dateien</h2>
         </div>
         <div class="panel-body">
-            <table id="group_uploads" class="table table-striped table-bordered dataTable no-footer" cellpadding="0" cellspacing="0">
+            <table id="group_uploads" class="display" cellspacing="0" width="100%">
                 <thead>
                 <th>#</th>
                 <th>App</th>
@@ -94,6 +96,7 @@ foreach ($groups as $group) {
                         <td><?= $group_upload->modified->i18nFormat('dd.MM.YYYY HH:mm')
                          ?></td>
                         <td class="actions">
+                            <a href="/<?php echo $group_upload->app_name;?>/<?php echo $group_upload->filename; ?>" target="_blank" title="<?php echo $group_upload->filename;?> öffnen" class="btn btn-danger"><i class="fa fa-search"></i></a>
                             <?php $edit_class = $this->Html->tag('i', '', ['class' => 'fa fa-pencil', 'escape' => false]); ?>
                             <?php $delete_class = $this->Html->tag('i', '', ['class' => 'fa fa-trash-o', 'escape' => false]); ?>
                             <?= $this->Html->link($edit_class . ' Bearbeiten', ['action' => 'edit', $group_upload->id], ['class' => 'btn btn-danger', 'escape' => false]) ?>
@@ -164,9 +167,9 @@ foreach ($groups as $group) {
             })
                 .always(function (data) {
                     if (data['status'] !== 'failed') {
-                        // TODO: reload
+                        location.reload();
                     } else {
-                        // TODO: Fehlermeldung einblenden
+                        location.reload();
                     }
                 });
         });
