@@ -45,8 +45,19 @@ foreach ($groups as $group) {
                 <td><?= $file_upload->created->i18nFormat('dd.MM.YYYY HH:mm') ?></td>
                 <td><?= $file_upload->modified->i18nFormat('dd.MM.YYYY HH:mm') ?></td>
                 <td class="actions">
-                    <a href="/FileUploads/view_file/<?php echo $file_upload->app_name;?>/<?php echo $file_upload->filename;?>" target="_blank" title="<?php echo $file_upload->filename;?> öffnen" class="btn btn-danger"><i class="fa fa-search"></i></a>
-                    <?php $delete_class = $this->Html->tag('i', '', ['class' => 'fa fa-trash-o', 'escape' => false]); ?>
+                <?php
+                    if ($file_upload->data!='') { ?>
+                        <a href="/FileUploads/view_file/<?php echo $file_upload->app_name;?>/<?php echo $file_upload->filename;?>" target="_blank" title="<?php echo $file_upload->filename;?> öffnen" class="btn btn-danger"><i class="fa fa-search"></i></a>
+                        <?php
+                    } else if ($file_upload->url!='') { ?>
+                        <a href="<?php echo $file_upload->url;?>" target="_blank" title="<?php echo $file_upload->filename;?> öffnen" class="btn btn-danger"><i class="fa fa-search"></i></a>
+                        <?php
+                    } else {
+                        ?>
+                        <a href="/files/<?php echo $file_upload->src;?>" target="_blank" title="<?php echo $file_upload->filename;?> öffnen" class="btn btn-danger"><i class="fa fa-search"></i></a>
+                        <?php
+                    }
+                    $delete_class = $this->Html->tag('i', '', ['class' => 'fa fa-trash-o', 'escape' => false]); ?>
                     <a href="#share_modal" data-toggle="modal" class="btn btn-danger freigeben_druecken" data-url="/FileUploads/share/<?php echo $file_upload->id;?>"><i class="fa fa-share-alt"></i>&nbsp;Freigeben</a>
                     <?= $this->Form->postLink($delete_class . ' Löschen', ['action' => 'delete', $file_upload->id], ['class' => 'btn btn-danger', 'escape' => false], ['confirm' => __('Bist du sicher?')]) ?>
                 </td>
@@ -96,8 +107,19 @@ foreach ($groups as $group) {
                         <td><?= $group_upload->modified->i18nFormat('dd.MM.YYYY HH:mm')
                          ?></td>
                         <td class="actions">
-                            <a href="/FileUploads/view_file/<?php echo $group_upload->app_name;?>/<?php echo $group_upload->filename;?>" target="_blank" title="<?php echo $group_upload->filename;?> öffnen" class="btn btn-danger"><i class="fa fa-search"></i></a>
-                            <?php $edit_class = $this->Html->tag('i', '', ['class' => 'fa fa-pencil', 'escape' => false]); ?>
+                            <?php
+                            if ($group_upload->data!='') { ?>
+                                <a href="/FileUploads/view_file/<?php echo $group_upload->app_name;?>/<?php echo $group_upload->filename;?>" target="_blank" title="<?php echo $group_upload->filename;?> öffnen" class="btn btn-danger"><i class="fa fa-search"></i></a>
+                            <?php
+                            } else if ($group_upload->url!='') { ?>
+                                <a href="<?php echo $group_upload->url;?>" target="_blank" title="<?php echo $group_upload->filename;?> öffnen" class="btn btn-danger"><i class="fa fa-search"></i></a>
+                                <?php
+                            } else {
+                                ?>
+                                <a href="/files/<?php echo $group_upload->src;?>" target="_blank" title="<?php echo $group_upload->filename;?> öffnen" class="btn btn-danger"><i class="fa fa-search"></i></a>
+                                <?php
+                            }
+                            $edit_class = $this->Html->tag('i', '', ['class' => 'fa fa-pencil', 'escape' => false]); ?>
                             <?php $delete_class = $this->Html->tag('i', '', ['class' => 'fa fa-trash-o', 'escape' => false]); ?>
                             <?= $this->Html->link($edit_class . ' Bearbeiten', ['action' => 'edit', $group_upload->id], ['class' => 'btn btn-danger', 'escape' => false]) ?>
                             <?= $this->Form->postLink($delete_class . ' Löschen', ['action' => 'delete', $group_upload->id], ['class' => 'btn btn-danger', 'escape' => false], ['confirm' => __('Bist du sicher?')]) ?>
