@@ -15,7 +15,7 @@
                         <?php
 
                         $url = $this->request->base.$item->image_url;
-                        $background_variable = "background-image: url($url); background-size: 100%;";
+                        $background_variable = "background-image: url($url); background-size: 71%;";
                         ?>
                         <div id="blog-bg" style="<?php echo $background_variable; ?>">
 
