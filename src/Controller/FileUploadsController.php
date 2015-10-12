@@ -35,6 +35,22 @@ class FileUploadsController extends AppController
     }
 
     /**
+     * @param null $id
+     *
+     * View file method
+     *
+     * Display data string of file upload
+     */
+    public function view_file($app_name, $file_name) {
+        $this->autoRender = false;
+        $this->viewBuilder()->layout('ajax');
+        $file_upload = $this->FileUploads->find()->where(['FileUploads.app_name' => $app_name, 'FileUploads.filename' => $file_name])->first();
+
+        echo $file_upload;
+        return;
+    }
+
+    /**
      * Add method
      *
      * @return void Redirects on successful add, renders view otherwise.
