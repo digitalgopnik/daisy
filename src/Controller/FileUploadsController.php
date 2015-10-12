@@ -91,8 +91,10 @@ class FileUploadsController extends AppController
      * @return daisy_url
      */
     public function uploadFile($appname = null, $url = null, $data = null) {
-
-        $this->layout = "ajax";
+        set_time_limit(0);
+        ini_set('memory_limit', '256M');
+        // ini_set('max_allowed_packet', 4000000000);
+        $this->viewBuilder()->layout('ajax');
         $this->autoRender = false;
 
         $this->loadModel('Users');
@@ -193,7 +195,7 @@ class FileUploadsController extends AppController
         $this->render('response');
 
         return;
-        
+
     }
 
     /**
