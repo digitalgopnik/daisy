@@ -1,5 +1,12 @@
 # TODO
 
+NOTHING
+
+
+
+
+# Erledigt
+
 ## Aufrufen von Runtergeladenen Dateien
 ### Bei runtergeladenen Dateien (visio):
 * Die URL (Visio) wird aufgerufen
@@ -14,11 +21,6 @@
 ### Bei Strut
 * Kann ich selber Programmieren, ich werde den einfachsten Weg der vorherigen Wege benutzen.
 
-
-
-
-
-# Erledigt
 ## Anderes
 * Der Callback von fileUpload ist ein HTML?
 * Ich möchte für jedes App Item ein <a href=„url_to_app“ target=„blank“> statt dem aktuellen iframe.
