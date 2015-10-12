@@ -116,7 +116,7 @@ foreach ($groups as $group) {
                                 <?php
                             } else {
                                 ?>
-                                <a href="/files/<?php echo $group_upload->src;?>" target="_blank" title="<?php echo $group_upload->filename;?> öffnen" class="btn btn-danger"><i class="fa fa-search"></i></a>
+                                <a href="/<?php echo $group_upload->src;?>" target="_blank" title="<?php echo $group_upload->filename;?> öffnen" class="btn btn-danger"><i class="fa fa-search"></i></a>
                                 <?php
                             }
                             $edit_class = $this->Html->tag('i', '', ['class' => 'fa fa-pencil', 'escape' => false]); ?>
