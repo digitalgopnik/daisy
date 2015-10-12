@@ -54,7 +54,7 @@ foreach ($groups as $group) {
                         <?php
                     } else {
                         ?>
-                        <a href="/files/<?php echo $file_upload->src;?>" target="_blank" title="<?php echo $file_upload->filename;?> öffnen" class="btn btn-danger"><i class="fa fa-search"></i></a>
+                        <a href="/<?php echo $file_upload->src;?>" target="_blank" title="<?php echo $file_upload->filename;?> öffnen" class="btn btn-danger"><i class="fa fa-search"></i></a>
                         <?php
                     }
                     $delete_class = $this->Html->tag('i', '', ['class' => 'fa fa-trash-o', 'escape' => false]); ?>
