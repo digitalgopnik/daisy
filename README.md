@@ -16,6 +16,9 @@ A skeleton for creating applications with [CakePHP](http://cakephp.org) 3.0.
 3. Change config/datasource.php configurations to pass your Database
 4. Trigger composer_update.sh via terminal
 5. Set up your WebServer for this project
+  * PHP: php.ini > post_max_size = 0
+  * NGINX: server { ...; client_max_body_size 200M; }
+  * MySQL: my.ini > max_allowed_packet = 99194304
 6. READY
 
 ### Installation (or use composer_update.sh)
