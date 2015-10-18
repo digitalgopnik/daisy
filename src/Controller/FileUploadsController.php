@@ -45,6 +45,9 @@ class FileUploadsController extends AppController
         $this->autoRender = false;
         $this->viewBuilder()->layout('ajax');
         $file_upload = $this->FileUploads->find()->where(['FileUploads.app_name' => $app_name, 'FileUploads.filename' => $file_name])->first();
+        // header("Content-length: $size");
+        header("Content-type: application/$file_upload->type");
+        header("Content-Disposition: attachment; filename=$file_name.$file_upload->type");
         echo $file_upload->data;
         return;
         //$this->set('response', $file_upload->data);
