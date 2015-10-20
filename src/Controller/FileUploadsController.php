@@ -138,7 +138,7 @@ class FileUploadsController extends AppController
                 'url' => $url,
                 'src' => 'db',
                 'data' => $data['data'],
-                'filename' => $data['name'],
+                'filename' => isset($data['name']) ? $data['name'] : "",
                 'type' => $data['type']
             ];
             $file_upload = $this->FileUploads->patchEntity($file_upload, $new_file_upload);
