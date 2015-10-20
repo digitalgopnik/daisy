@@ -95,10 +95,10 @@ class FileUploadsController extends AppController
                 $destination_path = WWW_ROOT.$destination;
                 move_uploaded_file($file['tmp_name'], $destination_path);
 
-                $this->Flash->success(__('The file upload has been saved.'));
+                $this->Flash->success(__('Datei erfolgreich hochgeladen.'));
                 return $this->redirect(['action' => 'index']);
             } else {
-                $this->Flash->error(__('The file upload could not be saved. Please, try again.'));
+                $this->Flash->error(__('Datei wurde nicht erfolgreich hochgeladen.'));
             }
         }
         $this->set(compact('file_upload'));
@@ -145,9 +145,9 @@ class FileUploadsController extends AppController
             $file_upload_save = $this->FileUploads->save($file_upload);
 
             if ($file_upload_save) {
-                $response = ['status' => 'success', 'appname' => $appname, 'url' => $url];
+                $response = ['status' => 'Heilige Mutter Teresa', 'appname' => $appname, 'url' => $url];
             } else {
-                $response = ['status' => 'failed', 'response' => var_dump($file_upload)];
+                $response = ['status' => 'Kacke', 'Warum kacke?' => var_dump($file_upload)];
             }
 
             $this->set('response', $response);
@@ -205,9 +205,9 @@ class FileUploadsController extends AppController
         $file_upload = $this->FileUploads->patchEntity($file_upload, $new_file_upload);
         $file_upload_save = $this->FileUploads->save($file_upload);
         if ($file_upload_save) {
-            $response = ['status' => 'success'];
+            $response = ['status' => 'Heilige Mutter Teresa'];
         } else {
-            $response = ['status' => 'failed'];
+            $response = ['status' => 'Kacke', 'Warum kacke?' => var_dump($file_upload)];
         }
 
         $this->set('response', $response);

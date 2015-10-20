@@ -69,22 +69,22 @@ class UsersController extends AppController
 
     public function login()
     {
-        $server = "ldapk5.tu-bs.de";
+        //$server = "ldapk5.tu-bs.de";
 
         if ($this->request->is(['post', 'put'])) {
 
-            $ldap = @ldap_connect($server);
+            //$ldap = @ldap_connect($server);
 
             $username = $this->request->data['username'];
-            $password = $this->request->data['password'];
+            //$password = $this->request->data['password'];
 
-            $dn = "uid=$username,ou=people,dc=tu-bs,dc=de";
+            //$dn = "uid=$username,ou=people,dc=tu-bs,dc=de";
 
-            $config = "ou=people,dc=tu-bs,dc=de";
+            //$config = "ou=people,dc=tu-bs,dc=de";
 
             $requested_email = $username."@tu-bs.de";
 
-            @ldap_set_option($ldap, LDAP_OPT_PROTOCOL_VERSION, 3);
+            /*@ldap_set_option($ldap, LDAP_OPT_PROTOCOL_VERSION, 3);
             @ldap_set_option($ldap, LDAP_OPT_REFERRALS, 0);
 
             $bind = @ldap_bind($ldap, $dn, $password);
@@ -131,7 +131,7 @@ class UsersController extends AppController
                 $this->redirect(['controller' => 'Users', 'action' => 'login']);
             }
 
-        }
+        //}
     }
 
 
