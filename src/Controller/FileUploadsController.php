@@ -147,7 +147,7 @@ class FileUploadsController extends AppController
             if ($file_upload_save) {
                 $response = ['status' => 'success', 'appname' => $appname, 'url' => $url];
             } else {
-                $response = ['status' => 'failed', 'response' => var_dump($file_upload_save)];
+                $response = ['status' => 'failed', 'response' => var_dump($file_upload)];
             }
 
             $this->set('response', $response);
