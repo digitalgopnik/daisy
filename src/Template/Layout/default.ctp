@@ -63,7 +63,7 @@ $cakeDescription = 'Dashboard | ';
 <section id="container">
     <header class="header black-bg">
         <!-- TU Braunschweig logo start-->
-        <a href="https://www.tu-braunschweig.de/" class="logo"><img style="margin-left: -15px" alt="TU Braunschweig" src="http://localhost/teamproject/img/siegel_rot.jpg"></a>
+        <a href="https://www.tu-braunschweig.de/" class="logo"><img id='logo' style="margin-left: -15px" alt="TU Braunschweig" src="img/TUBraunschweig_SC.png"></a>
         <!--logo end-->
         <div class="nav notify-row" id="top_menu">
 
