@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.6.25)
 # Datenbank: daisy
-# Erstellt am: 2015-10-22 18:47:39 +0000
+# Erstellt am: 2015-10-22 18:53:16 +0000
 # ************************************************************
 
 
@@ -204,7 +204,7 @@ LOCK TABLES `items` WRITE;
 INSERT INTO `items` (`id`, `name`, `auth_key`, `auth_token`, `url`, `image_url`, `help_text`, `app_help`, `offline`)
 VALUES
 	(1,'Sumo Paint',NULL,NULL,'https://www.sumopaint.com/home/','/img/tools/sumo.png','<h2>Sumo Paint</h2>\n              <ul>\n                <li>Zeichnen</li>\n              </ul>',NULL,0),
-	(2,'Slides',NULL,NULL,'https://slides.com/mulian','','<h2>slides</h2>\r\n              <ul>\r\n                <li>Erstelle Slides</li>\r\n              </ul>',NULL,0),
+	(2,'Slides',NULL,NULL,'https://slides.com/mulian','/img/tools/slides.png','<h2>slides</h2>\r\n              <ul>\r\n                <li>Erstelle Slides</li>\r\n              </ul>',NULL,0),
 	(3,'Marvel App','-','-','http://marvelapp.com','/img/tools/marvelapp.jpg','<h2>Marvelapp.com</h2>\n              <ul>\n                <li>Website-Prototyp</li>\n                <li>Lade deine Prototypen hoch, und bearbeite sie</li>\n              </ul>',NULL,0),
 	(4,'Wolfram Alpha',NULL,NULL,'http://wolframalpha.com','/img/tools/wolframalpha.png','<h2>WolframAlpha</h2>               <ul>                 <li>Rechen- und Wissensanwendung</li>                 <li>Loest mathematische Probleme.</li>               </ul>',NULL,0),
 	(5,'Presenter ProWise','-','-','http://www.prowise.com/presenter/start','/img/tools/prowise.jpg','<h2>ProWise Presenter</h2>\n              <ul>\n                <li>Scratchbook f?r Notizen, Ideensammlungen</li>\n                <li>Schnelles bearbeiten von Fotos und Grafiken</li>\n              </ul>',NULL,0),
