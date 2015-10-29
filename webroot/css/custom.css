@@ -1,3 +1,7 @@
+#logo {
+  height: 60px;
+}
+
 div.message.error {
     background-color: #d9534f;
     width: 250px;
