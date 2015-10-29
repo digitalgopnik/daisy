@@ -241,7 +241,7 @@ class FileUploadsController extends AppController
         $this->viewBuilder()->layout('ajax');
         $this->autoRender = false;
 
-        if (isset($this->request->session()->read('user_id') && $this->request->session()->read('user_id')>0) {
+        if ($this->request->session()->read('user_id')>0) {
             $this->set('response', ['status' => 'success', 'user_id' => $this->request->session()->read('user_id')]);
             $this->render('response');
         } else {
