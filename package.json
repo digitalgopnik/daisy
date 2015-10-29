@@ -2,13 +2,12 @@
   "name"    : "daisy",
   "description": "Dashboard Web-App. Used with an electronic Blackboard.",
   "version" : "0.1.0",
-  "main"    : "main.js",
   "engines": {
-    "node": ">=0.8.0"
+
   },
   "devDependencies": {
   },
   "dependencies": {
-    "daisy-strut": "git+https://github.com/mulian/daisy-strut.git"
+
   }
 }
