@@ -93,6 +93,7 @@ class FileUploadsController extends AppController
             if ($file_upload_save) {
 
                 $destination_path = WWW_ROOT.$destination;
+
                 move_uploaded_file($file['tmp_name'], $destination_path);
 
                 $this->Flash->success(__('Datei erfolgreich hochgeladen.'));
@@ -234,5 +235,19 @@ class FileUploadsController extends AppController
             $this->Flash->error(__('The file upload could not be deleted. Please, try again.'));
         }
         return $this->redirect(['action' => 'index']);
+    }
+
+    public function get_user_id() {
+        $this->viewBuilder()->layout('ajax');
+        $this->autoRender = false;
+
+        if ($this->Auth->user('id')>0) {
+            $this->set('response', ['status' => 'success', 'user_id' => $this->Auth->user('id')]);
+            $this->render('response');
+        } else {
+            $this->set('response', ['status' => 'failed']);
+            $this->render('response');
+        }
+
     }
 }
