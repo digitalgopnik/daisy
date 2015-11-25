@@ -45,7 +45,7 @@ class FileUploadsController extends AppController
         $this->autoRender = false;
         $this->viewBuilder()->layout('ajax');
         $file_upload = $this->FileUploads->find()->where(['FileUploads.app_name' => $app_name, 'FileUploads.filename' => $file_name])->first();
-        if ($file_upload->type=='jpg' || $file_upload->type=='png' || $file_upload->type=='gif') {
+        if ($file_upload->type =='jpg' || $file_upload->type == 'png' || $file_upload->type == 'gif') {
             $image = imagecreatefromstring($file_upload->data);
 
             ob_start();
@@ -62,6 +62,25 @@ class FileUploadsController extends AppController
             return;
         }
 
+    }
+
+    public function get_data($file_upload_id) {
+        $this->autoRender = false;
+        $this->viewBuilder()->layout('ajax');
+        $file_upload = $this->FileUploads->get($file_upload_id);
+
+        if ($file_upload->has('data')) {
+            $response = [
+                'status' => 'success',
+                'data' => $file_upload->data
+            ];
+        } else {
+            $response = [
+                'status' => 'leck_mich_am_arsch'
+            ];
+        }
+        $this->set('response', $response);
+        $this->render('response');
     }
 
     /**

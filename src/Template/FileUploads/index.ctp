@@ -47,7 +47,7 @@ foreach ($groups as $group) {
                 <td class="actions">
                 <?php
                     if ($file_upload->data!='') { ?>
-                        <a href="/FileUploads/view_file/<?php echo $file_upload->app_name;?>/<?php echo $file_upload->filename;?>" target="_blank" title="<?php echo $file_upload->filename;?> öffnen" class="btn btn-danger"><i class="fa fa-search"></i></a>
+                        <a data-id="<?= $file_upload->id ?>" target="_blank" title="<?php echo $file_upload->filename;?> öffnen" class="btn btn-danger generate_file_from_db"><i class="fa fa-search"></i></a>
                         <?php
                     } else if ($file_upload->url!='') { ?>
                         <a href="<?php echo $file_upload->url;?>" target="_blank" title="<?php echo $file_upload->filename;?> öffnen" class="btn btn-danger"><i class="fa fa-search"></i></a>
@@ -109,7 +109,7 @@ foreach ($groups as $group) {
                         <td class="actions">
                             <?php
                             if ($group_upload->data!='') { ?>
-                                <a href="/FileUploads/view_file/<?php echo $group_upload->app_name;?>/<?php echo $group_upload->filename;?>" target="_blank" title="<?php echo $group_upload->filename;?> öffnen" class="btn btn-danger"><i class="fa fa-search"></i></a>
+                                <a data-id="<?= $group_upload->id ?>" target="_blank" title="<?php echo $group_upload->filename;?> öffnen" class="btn btn-danger generate_file_from_db"><i class="fa fa-search"></i></a>
                             <?php
                             } else if ($group_upload->url!='') { ?>
                                 <a href="<?php echo $group_upload->url;?>" target="_blank" title="<?php echo $group_upload->filename;?> öffnen" class="btn btn-danger"><i class="fa fa-search"></i></a>
@@ -194,6 +194,22 @@ foreach ($groups as $group) {
                         location.reload();
                     }
                 });
+        });
+    });
+</script>
+
+<script type="text/javascript">
+    jQuery('a.generate_file_from_db').on('click', function(e) {
+        e.preventDefault();
+        $.ajax({
+            url: '/FileUploads/get_data/' + jQuery(this).attr('data-id'),
+            type: 'POST',
+            data: 1,
+            dataType: 'json',
+            async: true,
+            cache: false
+        }).always(function(data) {
+            console.log(data);
         });
     });
 </script>
