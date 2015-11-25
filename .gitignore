@@ -4,3 +4,4 @@
 /bin/*
 todo.txt
 node_modules
+config/app.php
