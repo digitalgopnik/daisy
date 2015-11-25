@@ -45,18 +45,22 @@ class FileUploadsController extends AppController
         $this->autoRender = false;
         $this->viewBuilder()->layout('ajax');
         $file_upload = $this->FileUploads->find()->where(['FileUploads.app_name' => $app_name, 'FileUploads.filename' => $file_name])->first();
-        // header("Content-length: $size");
-        header("Content-type: application/$file_upload->type");
-        header("Content-Disposition: attachment; filename=$file_name.$file_upload->type");
+        if ($file_upload->type=='jpg' || $file_upload->type=='png' || $file_upload->type=='gif') {
+            $image = imagecreatefromstring($file_upload->data);
 
-        $image = imagecreatefromstring($file_upload->data);
-
-        ob_start();
-        imagejpeg($image, null, 80);
-        $data = ob_get_contents();
-        ob_end_clean();
-        echo $data;
-        return;
+            ob_start();
+            imagejpeg($image, null, 80);
+            $data = ob_get_contents();
+            ob_end_clean();
+            echo $data;
+            return;
+        } else {
+            // header("Content-length: $size");
+            header("Content-type: application/$file_upload->type");
+            header("Content-Disposition: attachment; filename=$file_name.$file_upload->type");
+            echo $file_upload->data;
+            return;
+        }
 
     }
 
