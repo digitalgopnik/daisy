@@ -48,10 +48,16 @@ class FileUploadsController extends AppController
         // header("Content-length: $size");
         header("Content-type: application/$file_upload->type");
         header("Content-Disposition: attachment; filename=$file_name.$file_upload->type");
-        echo $file_upload->data;
+
+        $image = imagecreatefromstring($file_upload->data);
+
+        ob_start();
+        imagejpeg($image, null, 80);
+        $data = ob_get_contents();
+        ob_end_clean();
+        echo $data;
         return;
-        //$this->set('response', $file_upload->data);
-        //$this->render('response');
+
     }
 
     /**
