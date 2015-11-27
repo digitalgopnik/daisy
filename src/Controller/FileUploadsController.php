@@ -68,6 +68,8 @@ class FileUploadsController extends AppController
         $this->autoRender = false;
         $this->viewBuilder()->layout('ajax');
         $file_upload = $this->FileUploads->get($file_upload_id);
+        var_dump($file_upload);
+        die();
 
         if ($file_upload->has('data')) {
             $response = [
