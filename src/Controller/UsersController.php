@@ -95,8 +95,6 @@ class UsersController extends AppController
 
                 if ($search) {
                     $result = @ldap_get_entries($ldap, $search);
-                    var_dump($result);
-                    die();
                 }
 
                 $hashed_username = md5($username);
