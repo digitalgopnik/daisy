@@ -392,13 +392,13 @@ class GroupsController extends AppController
             foreach ($users as $user) {
 
                 $user_entity = explode('@', $user->email);
-                $uid = $user_entity['0'];
+                $uid = $user_entity[0];
                 $search = @ldap_search($ldap, $config, "uid=$uid");
                 $result = @ldap_get_entries($ldap, $search);
-                var_dump($result);
-                die();
-                $users_array[$user->id] = $result['0']['cn']['0'];
+                var_dump($result[0]['cn']);
+                $users_array[$user->id] = $result[0]['cn'][0];
             }
+            die();
             $this->set('users_array', $users_array);
             $this->set(compact('group'));
             $this->set('_serialize', ['group']);
