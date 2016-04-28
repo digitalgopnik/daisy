@@ -230,7 +230,7 @@ class GroupsController extends AppController
                         $accept_link = $configuration->host."/Accept/".$token;
 
                         $email = new email('default');
-                        $email->helpers(array('html', 'text'));
+                        $email->helpers(array('text'));
                         $email->viewvars(
                             array(
                                 'group_name' => $new_group->name,
@@ -325,7 +325,7 @@ class GroupsController extends AppController
                                     $accept_link = $configuration->host."/Accept/" . $token;
 
                                     $email = new email('default');
-                                    $email->helpers(array('html', 'text'));
+                                    $email->helpers(array('text'));
                                     $email->viewvars(
                                         array(
                                             'group_name' => $new_group->name,
@@ -395,12 +395,12 @@ class GroupsController extends AppController
                 $uid = $user_entity[0];
                 $search = @ldap_search($ldap, $config, "uid=$uid");
                 $result = @ldap_get_entries($ldap, $search);
-                var_dump($user_entity);
-                var_dump($uid);
-                var_dump($result[0]['cn']);
-                $users_array[$user->id] = $result[0]['cn'][0];
+                if (isset($result[0]) && isset($result[0]['cn'])) {
+                    $users_array[$user->id] = $result[0]['cn'][0];
+                } else {
+                    continue;
+                }
             }
-            die();
             $this->set('users_array', $users_array);
             $this->set(compact('group'));
             $this->set('_serialize', ['group']);

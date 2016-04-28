@@ -50,11 +50,23 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GroupsController.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="GroupsController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Controller/GroupsController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="271">
-              <caret line="398" column="31" selection-start-line="398" selection-start-column="31" selection-end-line="398" selection-end-column="31" />
+            <state relative-caret-position="240">
+              <caret line="327" column="59" selection-start-line="327" selection-start-column="59" selection-end-line="327" selection-end-column="59" />
+              <folding>
+                <element signature="e#33#66#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="app.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/config/app.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-2640">
+              <caret line="1" column="7" selection-start-line="1" selection-start-column="6" selection-end-line="1" selection-end-column="7" />
               <folding />
             </state>
           </provider>
@@ -288,12 +300,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1433167356785</updated>
-      <workItem from="1461822414235" duration="354000" />
+      <workItem from="1461822414235" duration="498000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="354000" />
+    <option name="totallyTimeSpent" value="498000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="23" width="1440" height="821" extended-state="0" />
@@ -679,13 +691,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/app.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="1" column="7" selection-start-line="1" selection-start-column="6" selection-end-line="1" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/config/routes.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="675">
@@ -725,8 +730,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Controller/GroupsController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="271">
-          <caret line="398" column="31" selection-start-line="398" selection-start-column="31" selection-end-line="398" selection-end-column="31" />
+        <state relative-caret-position="240">
+          <caret line="327" column="59" selection-start-line="327" selection-start-column="59" selection-end-line="327" selection-end-column="59" />
+          <folding>
+            <element signature="e#33#66#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/app.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2640">
+          <caret line="1" column="7" selection-start-line="1" selection-start-column="6" selection-end-line="1" selection-end-column="7" />
           <folding />
         </state>
       </provider>
