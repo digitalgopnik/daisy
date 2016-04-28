@@ -395,6 +395,8 @@ class GroupsController extends AppController
                 $uid = $user_entity['0'];
                 $search = @ldap_search($ldap, $config, "uid=$uid");
                 $result = @ldap_get_entries($ldap, $search);
+                var_dump($result);
+                die();
                 $users_array[$user->id] = $result['0']['cn']['0'];
             }
             $this->set('users_array', $users_array);
