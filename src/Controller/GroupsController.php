@@ -50,7 +50,7 @@ class GroupsController extends AppController
     public function accept()
     {
         $this->loadModel('GroupsUsers');
-        $this->layout = "ajax";
+        $this->viewBuilder()->layout("ajax");
         $this->autoRender = false;
         //var_dump($this->request);
         $token = explode('/', base64_decode($this->request->params['pass']['0']));

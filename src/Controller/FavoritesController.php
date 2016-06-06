@@ -34,7 +34,7 @@ class FavoritesController extends AppController
      */
     public function add($item_id = null)
     {
-        $this->layout = "ajax";
+        $this->viewBuilder()->layout("ajax");
         $this->autoRender = false;
         if ($this->request->is('post')) {
             $new_favorite = [
@@ -57,7 +57,7 @@ class FavoritesController extends AppController
     public function delete($item_id = null)
     {
         $this->request->allowMethod(['post', 'delete']);
-        $this->layout = "ajax";
+        $this->viewBuilder()->layout("ajax");
         $this->autoRender = false;
         if ($this->request->is('post')) {
             $favorite = $this->Favorites->find()->where(['user_id' => $this->request->session()->read('user_id'), 'item_id' => $item_id])->first();

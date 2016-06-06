@@ -175,7 +175,7 @@ class UsersController extends AppController
 
         $bla = true;
         if ($bla==true) {
-            $this->layout = "app";
+            $this->viewBuilder()->layout("app");
             $this->set('groups', $this->Groups->find()->all());
             $this->set('item', $this->Items->find()->where(['Items.url' => $url])->first());
             $this->set('url', $url);
