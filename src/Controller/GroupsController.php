@@ -2,7 +2,8 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
-use Cake\Network\Email\Email;
+use Cake\Mailer\Email;
+use Cake\Log\Log;
 
 /**
  * Groups Controller
@@ -302,13 +303,21 @@ class GroupsController extends AppController
                                         mkdir($user_path, 0777, true);
                                     }
 
+                                    // Undefined offset 0 on Line 307, 311
                                     $new_user_entity = [
-                                        'username' => md5($result['0']['uid']['0']),
+                                        'username' => md5($result[0]['uid'][0]),
                                         'password' =>  md5($username."password"),
                                         'user_path' => $user_folder,
                                         'role' => 'student',
-                                        'email' => $result['0']['uid']['0']."@tu-braunschweig.de"
+                                        'email' => $result[0]['uid'][0]."@tu-braunschweig.de"
                                     ];
+
+                                    Log::debug('username');
+                                    Log::debug($result[0]);
+                                    Log::debug($result[0]['uid'][0]);
+                                    Log::debug('email');
+                                    Log::debug($result[0]);
+                                    Log::debug($result[0]['uid'][0]);
 
                                     $user_entity = $this->Users->newEntity($new_user_entity);
                                     $user_entity = $this->Users->save($user_entity);
